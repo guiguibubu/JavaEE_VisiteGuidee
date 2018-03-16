@@ -4,9 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Gestion des reservations</title>
+<title>index</title>
 </head>
 <body>
-	response = <% session.getAttribute("resultat"); %>
-	<a href="afterReservation">Page suivante</a>
+	login = <% session.getAttribute("login"); %>
+	password = <% session.getAttribute("password"); %>
+	
+</body>
 </html>

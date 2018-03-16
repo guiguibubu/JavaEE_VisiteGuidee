@@ -4,9 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Gestion des reservations</title>
+<title>Insert title here</title>
 </head>
 <body>
-	response = <% session.getAttribute("resultat"); %>
-	<a href="afterReservation">Page suivante</a>
+	typeDeVisite = <% session.getAttribute("typeDeVisite"); %>
+	ville = <% session.getAttribute("ville"); %>
+	dateVisite = <% session.getAttribute("dateVisite"); %>
+	prix = <% session.getAttribute("prix"); %>
+
+</body>
 </html>
