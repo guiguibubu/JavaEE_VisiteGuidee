@@ -7,7 +7,8 @@
 <title>index</title>
 </head>
 <body>
-	response = <% session.getAttribute("resultat"); %>
+	login = <% session.getAttribute("login"); %>
+	password = <% session.getAttribute("password"); %>
 	
 </body>
 </html>
