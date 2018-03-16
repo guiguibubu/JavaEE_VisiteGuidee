@@ -38,6 +38,7 @@ public class Servlet extends HttpServlet {
 		session.setAttribute("resultat", reservation);
 		
 		RequestDispatcher dispatcher = request.getRequestDispatcher("GestionVisites.jsp");
-		dispatcher.forward(request, response);	
+		dispatcher.forward(request, response);
+		
 	}
 }

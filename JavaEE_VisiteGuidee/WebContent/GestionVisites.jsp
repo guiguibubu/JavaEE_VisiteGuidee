@@ -8,5 +8,6 @@
 </head>
 <body>
 	response = <% session.getAttribute("resultat"); %>
+	
 </body>
 </html>
