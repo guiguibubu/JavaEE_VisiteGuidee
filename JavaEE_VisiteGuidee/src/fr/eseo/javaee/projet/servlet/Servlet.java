@@ -1,7 +1,6 @@
 package fr.eseo.javaee.projet.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,7 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.eseo.javaee.projet.visiteguidee.*;
+import fr.eseo.javaee.projet.visiteguidee.Client;
+import fr.eseo.javaee.projet.visiteguidee.Reservation;
+import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteSEI;
+import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteService;
+import fr.eseo.javaee.projet.visiteguidee.Visite;
 
 /**
  * Servlet implementation class Servlet
@@ -34,17 +37,22 @@ public class Servlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ReservationVisite visite = new ReservationVisite();
+		Reservation reservation = new Reservation();
+		Visite visite = new Visite();
+		Client client = new Client();
 		visite.setCodeVisite(Integer.parseInt(request.getParameter("voyage")));
+
+		reservation.setCodeVisite(visite);
+		reservation.setCodeClient(client);
 
 		ReservationVisiteService service = new ReservationVisiteService();
 		ReservationVisiteSEI port = service.getReservationVisitePort();
-		
-		int code = port.reserverVisite(visite);
-				
+
+		int code = port.reserverVisite(reservation);
+
 		HttpSession session = request.getSession();
 		session.setAttribute("resultat", code);
-		
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("GestionVisites.jsp");
 		dispatcher.forward(request, response);
 	}

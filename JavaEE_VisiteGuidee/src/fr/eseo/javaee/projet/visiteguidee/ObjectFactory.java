@@ -105,11 +105,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ReservationVisite }
+     * Create an instance of {@link Reservation }
      * 
      */
-    public ReservationVisite createReservationVisite() {
-        return new ReservationVisite();
+    public Reservation createReservation() {
+        return new Reservation();
+    }
+
+    /**
+     * Create an instance of {@link Client }
+     * 
+     */
+    public Client createClient() {
+        return new Client();
+    }
+
+    /**
+     * Create an instance of {@link LocalDate }
+     * 
+     */
+    public LocalDate createLocalDate() {
+        return new LocalDate();
     }
 
     /**
@@ -121,11 +137,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link LocalDate }
+     * Create an instance of {@link LocalDateTime }
      * 
      */
-    public LocalDate createLocalDate() {
-        return new LocalDate();
+    public LocalDateTime createLocalDateTime() {
+        return new LocalDateTime();
     }
 
     /**

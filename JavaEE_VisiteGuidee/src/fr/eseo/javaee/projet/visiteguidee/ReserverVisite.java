@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="arg0" type="{http://visiteguidee.projet.javaee.eseo.fr/}reservationVisite" minOccurs="0"/&gt;
+ *         &lt;element name="arg0" type="{http://visiteguidee.projet.javaee.eseo.fr/}reservation" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -31,17 +31,17 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class ReserverVisite {
 
-    protected ReservationVisite arg0;
+    protected Reservation arg0;
 
     /**
      * Obtient la valeur de la propriété arg0.
      * 
      * @return
      *     possible object is
-     *     {@link ReservationVisite }
+     *     {@link Reservation }
      *     
      */
-    public ReservationVisite getArg0() {
+    public Reservation getArg0() {
         return arg0;
     }
 
@@ -50,10 +50,10 @@ public class ReserverVisite {
      * 
      * @param value
      *     allowed object is
-     *     {@link ReservationVisite }
+     *     {@link Reservation }
      *     
      */
-    public void setArg0(ReservationVisite value) {
+    public void setArg0(Reservation value) {
         this.arg0 = value;
     }
 

@@ -7,18 +7,18 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Classe Java pour reservationVisite complex type.
+ * <p>Classe Java pour reservation complex type.
  * 
  * <p>Le fragment de schéma suivant indique le contenu attendu figurant dans cette classe.
  * 
  * <pre>
- * &lt;complexType name="reservationVisite"&gt;
+ * &lt;complexType name="reservation"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="codeClient" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
+ *         &lt;element name="codeClient" type="{http://visiteguidee.projet.javaee.eseo.fr/}client" minOccurs="0"/&gt;
  *         &lt;element name="codeReservation" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
- *         &lt;element name="codeVisite" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
+ *         &lt;element name="codeVisite" type="{http://visiteguidee.projet.javaee.eseo.fr/}visite" minOccurs="0"/&gt;
  *         &lt;element name="nombrePersonnes" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *         &lt;element name="paiementEffectue" type="{http://www.w3.org/2001/XMLSchema}boolean"/&gt;
  *       &lt;/sequence&gt;
@@ -30,34 +30,42 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "reservationVisite", propOrder = {
+@XmlType(name = "reservation", propOrder = {
     "codeClient",
     "codeReservation",
     "codeVisite",
     "nombrePersonnes",
     "paiementEffectue"
 })
-public class ReservationVisite {
+public class Reservation {
 
-    protected int codeClient;
+    protected Client codeClient;
     protected int codeReservation;
-    protected int codeVisite;
+    protected Visite codeVisite;
     protected int nombrePersonnes;
     protected boolean paiementEffectue;
 
     /**
      * Obtient la valeur de la propriété codeClient.
      * 
+     * @return
+     *     possible object is
+     *     {@link Client }
+     *     
      */
-    public int getCodeClient() {
+    public Client getCodeClient() {
         return codeClient;
     }
 
     /**
      * Définit la valeur de la propriété codeClient.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Client }
+     *     
      */
-    public void setCodeClient(int value) {
+    public void setCodeClient(Client value) {
         this.codeClient = value;
     }
 
@@ -80,16 +88,24 @@ public class ReservationVisite {
     /**
      * Obtient la valeur de la propriété codeVisite.
      * 
+     * @return
+     *     possible object is
+     *     {@link Visite }
+     *     
      */
-    public int getCodeVisite() {
+    public Visite getCodeVisite() {
         return codeVisite;
     }
 
     /**
      * Définit la valeur de la propriété codeVisite.
      * 
+     * @param value
+     *     allowed object is
+     *     {@link Visite }
+     *     
      */
-    public void setCodeVisite(int value) {
+    public void setCodeVisite(Visite value) {
         this.codeVisite = value;
     }
 

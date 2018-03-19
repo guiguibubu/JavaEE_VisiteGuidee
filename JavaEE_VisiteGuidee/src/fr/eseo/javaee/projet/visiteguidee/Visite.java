@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="codeVisite" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
- *         &lt;element name="dateVisite" type="{http://visiteguidee.projet.javaee.eseo.fr/}localDate" minOccurs="0"/&gt;
+ *         &lt;element name="dateVisite" type="{http://visiteguidee.projet.javaee.eseo.fr/}localDateTime" minOccurs="0"/&gt;
  *         &lt;element name="prix" type="{http://www.w3.org/2001/XMLSchema}float"/&gt;
  *         &lt;element name="typeDeVisite" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="ville" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
@@ -40,7 +40,7 @@ import javax.xml.bind.annotation.XmlType;
 public class Visite {
 
     protected int codeVisite;
-    protected LocalDate dateVisite;
+    protected LocalDateTime dateVisite;
     protected float prix;
     protected String typeDeVisite;
     protected String ville;
@@ -66,10 +66,10 @@ public class Visite {
      * 
      * @return
      *     possible object is
-     *     {@link LocalDate }
+     *     {@link LocalDateTime }
      *     
      */
-    public LocalDate getDateVisite() {
+    public LocalDateTime getDateVisite() {
         return dateVisite;
     }
 
@@ -78,10 +78,10 @@ public class Visite {
      * 
      * @param value
      *     allowed object is
-     *     {@link LocalDate }
+     *     {@link LocalDateTime }
      *     
      */
-    public void setDateVisite(LocalDate value) {
+    public void setDateVisite(LocalDateTime value) {
         this.dateVisite = value;
     }
 
