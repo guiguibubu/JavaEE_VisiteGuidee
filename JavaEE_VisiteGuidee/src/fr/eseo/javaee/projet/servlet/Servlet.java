@@ -52,11 +52,17 @@ public class Servlet extends HttpServlet {
 		reservation.setCodeVisite(visite);
 		reservation.setCodeClient(client);
 
+		/**
+		 * initialisation des services
+		 */
 //		ReservationVisiteService service = new ReservationVisiteService();
 //		ReservationVisiteSEI port = service.getReservationVisitePort();
 //
 //		int code = port.reserverVisite(reservation);
 //
+		/**
+		 * creation de la session
+		 */
 //		HttpSession session = request.getSession();
 //		session.setAttribute("resultat", code);
 
