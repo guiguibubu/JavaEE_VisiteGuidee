@@ -9,7 +9,6 @@
 	</head>
 	<body>
 		<div class="container">
-<<<<<<< HEAD
 			<c:import url="/inc/header.jsp" />
 			<c:import url="/inc/navbar.jsp" />
 				<div class="row">
@@ -23,22 +22,9 @@
 								<a href="Recherche.jsp"><input type="submit" value="Connexion"/></a>
 								
 							</div>
-=======
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="panel panel-primary ">
-						<div class="panel-body">
-							
-							login : <input type="texte" name="login"/> <br>
-							password : <input type="password" name="password"/> <br>
-							<br>
-							<a href="Recherche.jsp"><input type="submit" value="envoyer"/></a>	
-							
->>>>>>> branch 'dev' of https://github.com/guiguibubu/JavaEE_VisiteGuidee
 						</div>
 					</div>
 				</div>
-			</div>
 		</div>
 	</body>
 </html>
