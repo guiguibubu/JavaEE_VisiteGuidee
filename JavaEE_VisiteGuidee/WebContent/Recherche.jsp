@@ -7,10 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-	typeDeVisite = <% session.getAttribute("typeDeVisite"); %>
-	ville = <% session.getAttribute("ville"); %>
-	dateVisite = <% session.getAttribute("dateVisite"); %>
-	prix = <% session.getAttribute("prix"); %>
-
+	<form methode="post" action="ServletRecherche">
+		typeDeVisite : <input type="texte" name="typeDeVisite"/> <br>
+		ville : <input type="texte" name="ville"/> <br>
+		dateVisite : <input type="texte" name="dateVisite"/> <br>
+		prix : <input type="texte" name="prix"/> <br>
+		<a href="GestionVisites.jsp"><input type="submit" value="Recherche"/></a>
+	</form>
 </body>
 </html>

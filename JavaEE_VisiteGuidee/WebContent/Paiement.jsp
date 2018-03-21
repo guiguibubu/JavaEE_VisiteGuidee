@@ -4,9 +4,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Confirmation paiement</title>
 </head>
 <body>
+voyage <%= request.getParameter("voyage") %>
+resultat <%= session.getAttribute("resultat") %>
 
+	<% if(request.getParameter("resultat").equals("")) { %>	
+		Paiement confirmé.
+		Votre réservation a été pris en compte.
+		Récapitulatif
+	<% } else { %>
+		Erreur lors de la réservation.
+		<a href=Recherche.jsp"><button type="button">Faire une autre réservation.</button></a>
+	<% } %>
+
+<a href=index.jsp"><button type="button">Quitter</button></a>
 </body>
 </html>

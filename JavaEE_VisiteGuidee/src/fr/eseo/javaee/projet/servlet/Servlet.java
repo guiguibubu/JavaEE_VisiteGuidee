@@ -55,18 +55,18 @@ public class Servlet extends HttpServlet {
 		/**
 		 * initialisation des services
 		 */
-//		ReservationVisiteService service = new ReservationVisiteService();
-//		ReservationVisiteSEI port = service.getReservationVisitePort();
-//
-//		int code = port.reserverVisite(reservation);
-//
+		ReservationVisiteService service = new ReservationVisiteService();
+		ReservationVisiteSEI port = service.getReservationVisitePort();
+
+		int code = port.reserverVisite(reservation);
+
 		/**
 		 * creation de la session
 		 */
-//		HttpSession session = request.getSession();
-//		session.setAttribute("resultat", code);
+		HttpSession session = request.getSession();
+		session.setAttribute("resultat", code);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("GestionVisites.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("Paiement.jsp");
 		dispatcher.forward(request, response);
 	}
 }

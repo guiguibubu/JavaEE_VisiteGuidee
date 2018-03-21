@@ -23,7 +23,7 @@
 								login : <input type="texte" name="login"/> <br>
 								password : <input type="password" name="password"/> <br>
 								
-								<a href="preReservation.html"><input type="submit" value="envoyer"/></a>
+								<a href="Recherche.jsp"><input type="submit" value="Connexion"/></a>
 								
 							</div>
 						</div>

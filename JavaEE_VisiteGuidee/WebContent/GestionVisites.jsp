@@ -7,7 +7,21 @@
 <title>Gestion des reservations</title>
 </head>
 <body>
-	voyage <%= request.getParameter("voyage") %> voyage
-	<%-- 	<%= session.getAttribute("resultat") %> --%>
-	<a href=Paiement.html">Page suivante</a>
+	typeDeVisite = <% session.getAttribute("typeDeVisite"); %>
+	ville = <% session.getAttribute("ville"); %>
+	dateVisite = <% session.getAttribute("dateVisite"); %>
+	prix = <% session.getAttribute("prix"); %>
+	<form method="get" action="Servlet">
+	Reservation
+		<fieldset>
+			<select name="voyage" size="4">
+				<option value="1">voyage 1</option>
+				<option value="2">voyage 2</option>
+				<option value="3">voyage 3</option>
+				<option value="4">voyage 4</option>
+			</select>
+			<br><br>
+	    	<input type="submit" value="Reserver">
+		</fieldset>
+	</form>
 </html>
