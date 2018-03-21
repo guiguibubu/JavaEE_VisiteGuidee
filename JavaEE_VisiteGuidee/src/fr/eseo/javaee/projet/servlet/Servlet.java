@@ -45,13 +45,13 @@ public class Servlet extends HttpServlet {
 		reservation.setCodeVisite(visite);
 		reservation.setCodeClient(client);
 
-		ReservationVisiteService service = new ReservationVisiteService();
-		ReservationVisiteSEI port = service.getReservationVisitePort();
-
-		int code = port.reserverVisite(reservation);
-
-		HttpSession session = request.getSession();
-		session.setAttribute("resultat", code);
+//		ReservationVisiteService service = new ReservationVisiteService();
+//		ReservationVisiteSEI port = service.getReservationVisitePort();
+//
+//		int code = port.reserverVisite(reservation);
+//
+//		HttpSession session = request.getSession();
+//		session.setAttribute("resultat", code);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("GestionVisites.jsp");
 		dispatcher.forward(request, response);
