@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<!-- Création d'un menu déroulant pour des filtres de sélection -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
-		<meta charset="UTF-8">
-		<title>Reservation Visites</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Visualisation de mes Reservations</title>
 	</head>
 	<body>
 		<form method="get" action="Servlet">
@@ -15,12 +14,11 @@
 				<!--  faire une boucle qui va générer les balises "option"  -->
 					<%int size = 5;%>
 					<%for(int i = 1; i<=size; i++) { %>
-						<option value="num">voyage <%=i%></option>
+						<option value="num">Ma reservation <%=i%></option>
 					<%}%>
 				</select>
 				<br><br>
 			</fieldset>
 		</form>
-		<a href="Paiement.jsp"><input type="submit" value="envoyer"/></a>
 	</body>
 </html>

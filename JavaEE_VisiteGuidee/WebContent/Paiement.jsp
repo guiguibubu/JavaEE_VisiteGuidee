@@ -4,9 +4,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<title>Page de paiement</title>
 </head>
 <body>
+
+Voyage selectionné : XXX,xx €
+<br>
+<br>
+Give me some cash !!
+
+
+
+
+
 
 </body>
 </html>
