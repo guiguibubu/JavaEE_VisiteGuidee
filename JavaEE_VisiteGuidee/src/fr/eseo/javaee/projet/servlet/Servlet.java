@@ -14,6 +14,7 @@ import fr.eseo.javaee.projet.visiteguidee.Client;
 import fr.eseo.javaee.projet.visiteguidee.Reservation;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteSEI;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteService;
+import fr.eseo.javaee.projet.visiteguidee.SQLException_Exception;
 import fr.eseo.javaee.projet.visiteguidee.Visite;
 
 /**
@@ -37,7 +38,7 @@ public class Servlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+
 		/**
 		 * initialisation des objets
 		 */
@@ -58,7 +59,13 @@ public class Servlet extends HttpServlet {
 		ReservationVisiteService service = new ReservationVisiteService();
 		ReservationVisiteSEI port = service.getReservationVisitePort();
 
-		int code = port.reserverVisite(reservation);
+		int code = 0;
+		try {
+			code = port.reserverVisite(reservation);
+		} catch (SQLException_Exception e) {
+			// TODO Gérer l'exception pour la transmettre à l'IHM
+			e.printStackTrace();
+		}
 
 		/**
 		 * creation de la session

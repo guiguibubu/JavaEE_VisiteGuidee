@@ -1,8 +1,11 @@
 
 package fr.eseo.javaee.projet.visiteguidee;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -18,6 +21,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence&gt;
  *         &lt;element name="codeVisite" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *         &lt;element name="dateVisite" type="{http://visiteguidee.projet.javaee.eseo.fr/}localDateTime" minOccurs="0"/&gt;
+ *         &lt;element name="listeAttributs" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/&gt;
  *         &lt;element name="prix" type="{http://www.w3.org/2001/XMLSchema}float"/&gt;
  *         &lt;element name="typeDeVisite" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="ville" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
@@ -33,6 +37,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "visite", propOrder = {
     "codeVisite",
     "dateVisite",
+    "listeAttributs",
     "prix",
     "typeDeVisite",
     "ville"
@@ -41,7 +46,9 @@ public class Visite {
 
     protected int codeVisite;
     protected LocalDateTime dateVisite;
-    protected float prix;
+    @XmlElement(nillable = true)
+    protected List<String> listeAttributs;
+	protected float prix;
     protected String typeDeVisite;
     protected String ville;
 
@@ -86,6 +93,35 @@ public class Visite {
     }
 
     /**
+     * Gets the value of the listeAttributs property.
+     * 
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the listeAttributs property.
+     * 
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getListeAttributs().add(newItem);
+     * </pre>
+     * 
+     * 
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link String }
+     * 
+     * 
+     */
+    public List<String> getListeAttributs() {
+        if (listeAttributs == null) {
+            listeAttributs = new ArrayList<String>();
+        }
+        return this.listeAttributs;
+    }
+
+	/**
      * Obtient la valeur de la propriété prix.
      * 
      */
