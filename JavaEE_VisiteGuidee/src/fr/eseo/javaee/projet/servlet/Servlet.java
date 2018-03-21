@@ -37,19 +37,32 @@ public class Servlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		/**
+		 * initialisation des objets
+		 */
 		Reservation reservation = new Reservation();
 		Visite visite = new Visite();
 		Client client = new Client();
 		visite.setCodeVisite(Integer.parseInt(request.getParameter("voyage")));
 
+		/**
+		 * maj de la reservation
+		 */
 		reservation.setCodeVisite(visite);
 		reservation.setCodeClient(client);
 
+		/**
+		 * initialisation des services
+		 */
 		ReservationVisiteService service = new ReservationVisiteService();
 		ReservationVisiteSEI port = service.getReservationVisitePort();
 
 		int code = port.reserverVisite(reservation);
 
+		/**
+		 * creation de la session
+		 */
 		HttpSession session = request.getSession();
 		session.setAttribute("resultat", code);
 
