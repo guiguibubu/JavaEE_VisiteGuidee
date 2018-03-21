@@ -2,19 +2,6 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-	<form methode="post" action="ServletRecherche">
-		typeDeVisite : <input type="texte" name="typeDeVisite"/> <br>
-		ville : <input type="texte" name="ville"/> <br>
-		dateVisite : <input type="texte" name="dateVisite"/> <br>
-		prix : <input type="texte" name="prix"/> <br>
-		<a href="GestionVisites.jsp"><input type="submit" value="Recherche"/></a>
-	</form>
-</body>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Gestion Visites - Recherche</title>
@@ -29,14 +16,14 @@
 						<div class="panel panel-primary ">
 							<div class="panel-body">
 								
-								<form methode="post" action="">
+								<form methode="post" action="ServletRecherche">
 									typeDeVisite : <input type="texte" name="typeDeVisite"/> <br>
 									ville : <input type="texte" name="ville"/> <br>
 									dateVisite : <input type="texte" name="dateVisite"/> <br>
 									prix : <input type="texte" name="prix"/> <br>
+									<input type="submit" value="envoyer"/>	
 								</form>
-								<a href="GestionVisites.jsp"><input type="submit" value="envoyer"/></a>
-								
+
 							</div>
 						</div>
 					</div>
