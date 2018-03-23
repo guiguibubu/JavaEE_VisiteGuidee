@@ -9,8 +9,6 @@
 	</head>
 	<body>
 		<div class="container">
-			<c:import url="/inc/header.jsp" />
-			<c:import url="/inc/navbar.jsp" />
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-primary ">
