@@ -9,7 +9,6 @@
 	</head>
 	<body>
 		<div class="container">
-<<<<<<< HEAD
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-primary ">
@@ -22,7 +21,6 @@
 									prix : <input type="texte" name="prix"/> <br><br>
 									<a href="GestionVisites.jsp"><input type="submit" value="envoyer"/></a>
 								</form>
-=======
 
 			<div class="row">
 				<div class="col-lg-12">
@@ -37,25 +35,10 @@
 							</form>
 							<a href="GestionVisites.jsp"><input type="submit" value="envoyer"/></a>
 							
->>>>>>> branch 'dev' of https://github.com/guiguibubu/JavaEE_VisiteGuidee
 
-<<<<<<< HEAD
-							</div>
-=======
->>>>>>> branch 'dev' of https://github.com/guiguibubu/JavaEE_VisiteGuidee
-						</div>
-					</div>
-
-					<div class="col-lg-12">
-						<div class="panel panel-primary ">
-							<div class="panel-body">
-							
-								<a href="MesReservations.jsp"><input type="submit" value="Reservations"/></a>
-								
 							</div>
 						</div>
 					</div>
-					
 				</div>
 			</div>
 		</div>
