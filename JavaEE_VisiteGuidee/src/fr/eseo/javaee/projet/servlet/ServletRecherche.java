@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eseo.javaee.projet.visiteguidee.LocalDateTime;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteSEI;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteService;
 import fr.eseo.javaee.projet.visiteguidee.SQLException_Exception;
@@ -43,33 +44,41 @@ public class ServletRecherche extends HttpServlet {
 		 * initialisation des objets
 		 */
 		Visite visite = new Visite();
+		LocalDateTime dateTime = new LocalDateTime();
+		
 		visite.setTypeDeVisite(request.getParameter("typeDeVisite"));
 		visite.setVille(request.getParameter("ville"));
-		//visite.setDateVisite(request.getParameter("dateVisite"));
-		visite.setPrix(Integer.parseInt(request.getParameter("dateVisite")));
-
-		/**
-		 * initialisation des services
-		 */
-		ReservationVisiteService service = new ReservationVisiteService();
-		ReservationVisiteSEI port = service.getReservationVisitePort();
-
-
-		List<Visite> visites = new ArrayList<Visite>();
-		try {
-			visites = port.trouverVisite(visite);
-		} catch (SQLException_Exception e) {
-			// TODO Gérer l'exception pour la transmettre à l'IHM
-			e.printStackTrace();
+		String date = request.getParameter("dateVisite");
+		visite.setDateVisite(dateTime);
+		
+		try{
+			visite.setPrix(Integer.parseInt(request.getParameter("prix")));
+		} catch (Exception e) {
+			System.out.println(e);
 		}
-		int nbr = visites.size();
 
-		/**
-		 * creation de la session
-		 */
-		HttpSession session = request.getSession();
-		session.setAttribute("visites", visites);
-		session.setAttribute("taille", nbr);
+//		/**
+//		 * initialisation des services
+//		 */
+//		ReservationVisiteService service = new ReservationVisiteService();
+//		ReservationVisiteSEI port = service.getReservationVisitePort();
+//
+//
+//		List<Visite> visites = new ArrayList<Visite>();
+//		try {
+//			visites = port.trouverVisite(visite);
+//		} catch (SQLException_Exception e) {
+//			// TODO Gï¿½rer l'exception pour la transmettre ï¿½ l'IHM
+//			e.printStackTrace();
+//		}
+//		int nbr = visites.size();
+//
+//		/**
+//		 * creation de la session
+//		 */
+//		HttpSession session = request.getSession();
+//		session.setAttribute("visites", visites);
+//		session.setAttribute("taille", nbr);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("GestionVisites.jsp");
 		dispatcher.forward(request, response);

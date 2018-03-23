@@ -7,16 +7,14 @@
 <title>Confirmation paiement</title>
 </head>
 <body>
-voyage <%= request.getParameter("voyage") %>
-resultat <%= session.getAttribute("resultat") %>
-
-	<% if(request.getParameter("resultat").equals("")) { %>	
-		Paiement confirmé.
-		Votre réservation a été pris en compte.
-		Récapitulatif
+	<% if(request.getParameter("resultat") == "") { %>	
+		Paiement confirmé.<br>
+		Votre réservation a été pris en compte.<br>
+		Récapitulatif<br>
+		voyage <%= request.getParameter("voyage") %><br>
 	<% } else { %>
-		Erreur lors de la réservation.
-		<a href=Recherche.jsp"><button type="button">Faire une autre réservation.</button></a>
+		Erreur lors de la réservation.<br>
+		<a href=Recherche.jsp"><button type="button">Faire une autre réservation.</button></a><br>
 	<% } %>
 
 <a href=index.jsp"><button type="button">Quitter</button></a>
