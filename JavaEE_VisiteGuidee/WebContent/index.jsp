@@ -24,15 +24,6 @@
 							</div>
 						</div>
 					</div>
-					<div class="col-lg-12">
-						<div class="panel panel-primary ">
-							<div class="panel-body">
-							
-								<a href="MesReservations.jsp"><input type="submit" value="Reservations"/></a>
-								
-							</div>
-						</div>
-					</div>
 				</div>
 		</div>
 	</body>
