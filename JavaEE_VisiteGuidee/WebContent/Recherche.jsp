@@ -15,5 +15,6 @@
 			prix : <input type="texte" name="prix"/> <br>
 		</form>
 		<a href="GestionVisites.jsp"><input type="submit" value="envoyer"/></a>
+
 	</body>
 </html>
