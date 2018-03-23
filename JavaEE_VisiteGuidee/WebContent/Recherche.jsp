@@ -19,7 +19,7 @@
 									ville : <input type="texte" name="ville"/> <br>
 									dateVisite : <input type="date" name="dateVisite"/> <br>
 									prix : <input type="texte" name="prix"/> <br><br>
-									<a href="GestionVisites.jsp"><input type="submit" value="envoyer"/></a>
+									<a href="GestionVisites.jsp"><input type="submit" value="Envoyer"/></a>
 								</form>
 
 							</div>
