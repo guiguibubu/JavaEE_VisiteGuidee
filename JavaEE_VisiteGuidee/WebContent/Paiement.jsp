@@ -11,7 +11,7 @@
 		resultat <%= session.getAttribute("resultat") %>
 
 		<% if(request.getParameter("resultat").equals("")) { %>	
-			Paiement confirmé.
+			Paiement confirme.
 			Votre réservation a été pris en compte.
 			Récapitulatif
 		<% } else { %>
