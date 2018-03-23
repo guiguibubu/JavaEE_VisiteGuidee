@@ -7,7 +7,7 @@
 		<title>Visualisation de mes Reservations</title>
 	</head>
 	<body>
-		<form method="get" action="Servlet">
+		<form method="post" action="Servlet">
 			Reservation
 			<fieldset>
 				<select name="voyage" size="4">
@@ -20,5 +20,6 @@
 				<br><br>
 			</fieldset>
 		</form>
+		<br><a href="Recherche.jsp"><input type="submit" value="Retour"/></a>
 	</body>
 </html>
