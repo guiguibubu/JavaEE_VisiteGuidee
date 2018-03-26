@@ -12,16 +12,17 @@
 	<body>
 		<form method="post" action="Servlet">
 			Reservation
-			<fieldset>
-				<select name="voyage" size="8">
-				<!--  faire une boucle qui va générer les balises "option"  -->
-					<%int nbVisite =  (int)session.getAttribute("taille");%>
-					<%for(int i = 0; i<nbVisite; i++) { %>
-					<option value=<%=((List<Visite>)session.getAttribute("visites")).get(i)%>><%=((List<Visite>)session.getAttribute("visites")).get(i).getCodeVisite()%></option>
-					<%}%>
-				</select>
-			</fieldset>
-			<a href="Paiement.jsp"><input type="submit" value="envoyer"/></a>
+			<!--  faire une boucle qui va générer les balises "option"  -->
+			<%for(int i = 1; i<=(int)session.getAttribute("taille")
+								/*((List<Visite>)session.getAttribute("visites")).size()*/
+								; i++) { %>
+			<%String affichage = new String(); %>
+			<%affichage = 	((List<Visite>)session.getAttribute("visites")).get(i-1).getTypeDeVisite() + ((List<Visite>)session.getAttribute("visites")).get(i-1).getVille() + ((List<Visite>)session.getAttribute("visites")).get(i-1).getDateVisite() + ((List<Visite>)session.getAttribute("visites")).get(i-1).getPrix();%>
+			<option value="num">voyage <%=i%> - <%=affichage%></option>
+			<%}%>
+			
 		</form>
+		<%= session.getAttribute("type") %>
+		<a href="Paiement.jsp"><input type="submit" value="envoyer"/></a>
 	</body>
 </html>

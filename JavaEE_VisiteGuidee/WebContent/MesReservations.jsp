@@ -10,27 +10,19 @@
 	<body>
 		<form method="post" action="ServletAnnulation">
 			Reservation
-			<fieldset>
-				<select name="code" size="4">
 				<!--  faire une boucle qui va générer les balises "option"  -->
 					<%int size = 5;%>
 					<%for(int i = 1; i<=size; i++) { %>
 						<option value="num">Ma reservation <%=i%></option>
 					<%}%>
-				</select>
+
 				<br><br>
-			</fieldset>
-		</form>
 
-		<form action="MesReservations.jsp">
-			<button type="submit" value="Annuler">Annuler</button>
+			<a href="MesReservations.jsp"><input type="submit" value="Annuler"/></a><br>
 		</form>
-		<form action="Recherche.jsp">
-			<button type="submit" value="Retour">Retour</button>
-		</form>
-
-		<a href="Recherche.jsp"><input type="submit" value="Retour"/></a>		
-		<% if(request.getParameter("annulation") == "Succes") { %>	
+		<a href="Recherche.jsp"><input type="submit" value="Retour"/></a>
+		
+		<% if(session.getAttribute("annulation") == "Succes") { %>	
 			Annulation confirmée.<br>
 			Récapitulatif<br>
 			Annulation : voyage <%= request.getParameter("code") %><br>
