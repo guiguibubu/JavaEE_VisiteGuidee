@@ -9,16 +9,13 @@
 	<body>
 		<form method="post" action="ServletAnnulation">
 			Reservation
-			<fieldset>
-				<select name="code" size="4">
 				<!--  faire une boucle qui va générer les balises "option"  -->
 					<%int size = 5;%>
 					<%for(int i = 1; i<=size; i++) { %>
 						<option value="num">Ma reservation <%=i%></option>
 					<%}%>
-				</select>
+
 				<br><br>
-			</fieldset><br>
 			<a href="MesReservations.jsp"><input type="submit" value="Annuler"/></a><br>
 		</form>
 		<a href="Recherche.jsp"><input type="submit" value="Retour"/></a>
