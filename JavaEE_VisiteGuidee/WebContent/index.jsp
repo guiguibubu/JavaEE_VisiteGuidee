@@ -14,8 +14,8 @@
 						<div class="panel panel-primary ">
 							<div class="panel-body">
 								
-								login : <input type="texte" name="login"/> <br>
-								password : <input type="password" name="password"/> <br>
+								login : <input type="texte" name="login" placeholder="Login"/> <br>
+								password : <input type="password" name="password" placeholder="Password"/> <br>
 								
 								<a href="Recherche.jsp"><input type="submit" value="Connexion"/></a>
 								

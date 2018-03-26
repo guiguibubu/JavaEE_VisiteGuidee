@@ -15,11 +15,11 @@
 							<div class="panel-body">
 								
 								<form method="post" action="ServletRecherche">
-									typeDeVisite : <input type="texte" name="typeDeVisite"/> <br>
-									ville : <input type="texte" name="ville"/> <br>
-									dateVisite : <input type="date" name="dateVisite"/> <br>
-									prix : <input type="texte" name="prix"/> <br><br>
-									<a href="GestionVisites.jsp"><input type="submit" value="Envoyer"/></a>
+									typeDeVisite : <input type="text" name="typeDeVisite" placeholder="Type de visite"/> <br>
+									ville : <input type="text" name="ville" placeholder="Ville"/> <br>
+									dateVisite : <input type="date" name="dateVisiteMin" placeholder="Date minimum"/> et <input type="date" name="dateVisiteMax" placeholder="Date maximum"/><br>
+									prix : <input type="text" name="prix" placeholder="Prix"/> <br><br>
+									<input type="submit" value="Envoyer"/>
 								</form>
 
 							</div>
