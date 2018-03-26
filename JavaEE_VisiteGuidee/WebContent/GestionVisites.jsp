@@ -7,6 +7,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Reservation Visites</title>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css" />	
 	</head>
 	<body>
 		<form method="post" action="Servlet">
@@ -22,10 +23,11 @@
 					<%for(int i = 0; i<nbVisite; i++) { %>
 						<option value="num"><%=((List<Visite>)session.getAttribute("visites")).get(i).getTypeDeVisite()%></option>
 					<%}%>
+
 				</select>
-				<br><br>
 			</fieldset>
 		</form>
+		<%= session.getAttribute("type") %>
 		<a href="Paiement.jsp"><input type="submit" value="envoyer"/></a>
 	</body>
 </html>
