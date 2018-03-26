@@ -55,7 +55,7 @@ public class ServletAnnulation extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("annulation", annulation);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("MesReservations.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher("Annulation.jsp");
 		dispatcher.forward(request, response);
 	}
 
