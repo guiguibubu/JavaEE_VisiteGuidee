@@ -57,9 +57,9 @@ public class ServletRecherche extends HttpServlet {
 		visite.setTypeDeVisite(typeVisite);
 		visite.setVille(ville);
 		try {
-			visite.setDateVisite(Convertisseur.asXMLGregorianCalendar(dateTimeFormatter.parse(dateTime)));
+			//visite.setDateVisite(Convertisseur.asXMLGregorianCalendar(dateTimeFormatter.parse(dateTime)));
 			visite.setPrix(Integer.parseInt(prix));
-		} catch (ParseException e1) {
+		} catch (/*Parse*/Exception e1) {
 			e1.printStackTrace();
 		}
 

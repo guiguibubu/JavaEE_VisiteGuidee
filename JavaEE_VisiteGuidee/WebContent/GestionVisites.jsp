@@ -17,12 +17,11 @@
 				<!--  faire une boucle qui va générer les balises "option"  -->
 					<%int nbVisite =  (int)session.getAttribute("taille");%>
 					<%for(int i = 0; i<nbVisite; i++) { %>
-						<option value="num"><%=((List<Visite>)session.getAttribute("visites")).get(i).getCodeVisite()%></option>
+					<option value=<%=((List<Visite>)session.getAttribute("visites")).get(i)%>><%=((List<Visite>)session.getAttribute("visites")).get(i).getCodeVisite()%></option>
 					<%}%>
 				</select>
 			</fieldset>
+			<a href="Paiement.jsp"><input type="submit" value="envoyer"/></a>
 		</form>
-		<%= session.getAttribute("type") %>
-		<a href="Paiement.jsp"><input type="submit" value="envoyer"/></a>
 	</body>
 </html>

@@ -10,19 +10,19 @@
 <body>
 	Paiement
 	<fieldset>
-		<% if(request.getParameter("resultat") == null) { %>	
+		<% if(session.getAttribute("resultat").equals(0)) { %>	
+			Erreur lors de la réservation.<br>
+		<% } else { %>
 			Paiement confirmé.<br>
 			Votre réservation a été pris en compte.<br>
 			Récapitulatif<br>
-			voyage <%= request.getParameter("voyage") %><br>
-		<% } else { %>
-			Erreur lors de la réservation.<br>
+			Reservation <%= session.getAttribute("resultat") %><br>
 		<% } %>
 	</fieldset><br>
-	<% if(request.getParameter("resultat") == null) { %>
-			<a href="Recherche.jsp"><input type="submit" value="Faire une autre reservation."/></a>
-		<% } else { %>
+	<% if(session.getAttribute("resultat").equals(0)) { %>
 			<a href="Recherche.jsp"><input type="submit" value="Retour"/></a>
+		<% } else { %>
+			<a href="Recherche.jsp"><input type="submit" value="Faire une autre reservation."/></a>
 		<% } %>
 	<a href="index.jsp"><input type="submit" value="Quitter"/></a>
 </body>

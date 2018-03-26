@@ -44,7 +44,11 @@ public class Servlet extends HttpServlet {
 		Reservation reservation = new Reservation();
 		Visite visite = new Visite();
 		Client client = new Client();
-		visite.setCodeVisite(Integer.parseInt(request.getParameter("voyage")));
+		try{
+			visite.setCodeVisite(Integer.parseInt(request.getParameter("voyage")));
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 		/**
 		 * maj de la reservation
@@ -58,14 +62,13 @@ public class Servlet extends HttpServlet {
 		ReservationVisiteService service = new ReservationVisiteService();
 		ReservationVisiteSEI port = service.getReservationVisitePort();
 		int code = 0;
-		
+		System.out.println(code);
 		try {
 			code = port.reserverVisite(reservation);
 		} catch (Exception e) {
 			// TODO G�rer l'exception pour la transmettre � l'IHM
 			e.printStackTrace();
 		}
-
 		/**
 		 * creation de la session
 		 */
