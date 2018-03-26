@@ -23,7 +23,6 @@
 					<%for(int i = 0; i<nbVisite; i++) { %>
 						<option value="num"><%=((List<Visite>)session.getAttribute("visites")).get(i).getTypeDeVisite()%></option>
 					<%}%>
-
 				</select>
 			</fieldset>
 		</form>

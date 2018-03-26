@@ -66,6 +66,7 @@ public class ServletRecherche extends HttpServlet {
 		} catch (NumberFormatException e1) {
 			e1.printStackTrace();
 		}
+		visite.setPrix(Integer.parseInt(prix));
 
 		/**
 		 * initialisation des services
@@ -73,13 +74,8 @@ public class ServletRecherche extends HttpServlet {
 		ReservationVisiteService service = new ReservationVisiteService();
 		ReservationVisiteSEI port = service.getReservationVisitePort();
 
-		List<Visite> visites = new ArrayList<Visite>();
-		try {
-			visites = port.trouverVisite(visite);
-		} catch (Exception e) {
-			// TODO G�rer l'exception pour la transmettre � l'IHM
-			e.printStackTrace();
-		}
+		List<Visite> visites = new ArrayList<>();
+		visites = port.trouverVisite(visite);
 		int nbr = visites.size();
 
 		/**
