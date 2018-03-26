@@ -12,7 +12,7 @@
 	<fieldset>
 		<% if(request.getParameter("resultat") == null) { %>	
 			Paiement confirmé.<br>
-			Votre réservation a été pris en compte.<br>
+			Votre réservation a été prise en compte.<br>
 			Récapitulatif<br>
 			voyage <%= request.getParameter("voyage") %><br>
 		<% } else { %>
