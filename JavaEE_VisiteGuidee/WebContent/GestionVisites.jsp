@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ page import="java.util.List" %>
+<%@ page import="fr.eseo.javaee.projet.visiteguidee.Visite" %>
 <!-- Création d'un menu déroulant pour des filtres de sélection -->
 <html>
 	<head>
@@ -16,6 +17,10 @@
 					<%int size = 5;%>
 					<%for(int i = 1; i<=size; i++) { %>
 						<option value="num">voyage <%=i%></option>
+					<%}%>
+					<%int nbVisite =  (int)session.getAttribute("taille");%>
+					<%for(int i = 0; i<nbVisite; i++) { %>
+						<option value="num"><%=((List<Visite>)session.getAttribute("visites")).get(i).getTypeDeVisite()%></option>
 					<%}%>
 				</select>
 				<br><br>

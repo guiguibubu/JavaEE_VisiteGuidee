@@ -8,8 +8,21 @@
 		<link rel="icon" href="/images/favicon.ico"/>
 	</head>
 	<body>
-		Identifiant : <input type="id" name="id"/> <br>
-		Mot de Passe : <input type="password" name="password"/> <br>
-		<a href="Recherche.jsp"><input type="submit" value="Connexion"/></a>
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-primary ">
+						<div class="panel-body">
+							
+							login : <input type="texte" name="login" placeholder="Login"/> <br>
+							password : <input type="password" name="password" placeholder="Password"/> <br>
+							
+							<a href="Recherche.jsp"><input type="submit" value="Connexion"/></a>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>

@@ -18,7 +18,6 @@
 		<a href="Recherche.jsp"><input type="submit" value="Retour"/></a>
 	<% } %>
 
-
 <a href="index.jsp"><input type="submit" value="Quitter"/></a>
 </body>
 </html>

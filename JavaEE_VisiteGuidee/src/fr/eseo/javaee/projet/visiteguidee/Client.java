@@ -1,12 +1,11 @@
 
 package fr.eseo.javaee.projet.visiteguidee;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
@@ -21,14 +20,13 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence&gt;
  *         &lt;element name="adresse" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="codePostal" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
- *         &lt;element name="dateNaissance" type="{http://visiteguidee.projet.javaee.eseo.fr/}localDate" minOccurs="0"/&gt;
  *         &lt;element name="idClient" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
- *         &lt;element name="listeAttributs" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/&gt;
  *         &lt;element name="mail" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="nom" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="numTelephone" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *         &lt;element name="pays" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="prenom" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element name="dateNaissance" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -41,28 +39,26 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "client", propOrder = {
     "adresse",
     "codePostal",
-    "dateNaissance",
     "idClient",
-    "listeAttributs",
     "mail",
     "nom",
     "numTelephone",
     "pays",
-    "prenom"
+    "prenom",
+    "dateNaissance"
 })
 public class Client {
 
     protected String adresse;
     protected int codePostal;
-    protected LocalDate dateNaissance;
     protected int idClient;
-    @XmlElement(nillable = true)
-    protected List<String> listeAttributs;
-	protected String mail;
+    protected String mail;
     protected String nom;
     protected int numTelephone;
     protected String pays;
     protected String prenom;
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar dateNaissance;
 
     /**
      * Obtient la valeur de la propriété adresse.
@@ -105,30 +101,6 @@ public class Client {
     }
 
     /**
-     * Obtient la valeur de la propriété dateNaissance.
-     * 
-     * @return
-     *     possible object is
-     *     {@link LocalDate }
-     *     
-     */
-    public LocalDate getDateNaissance() {
-        return dateNaissance;
-    }
-
-    /**
-     * Définit la valeur de la propriété dateNaissance.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link LocalDate }
-     *     
-     */
-    public void setDateNaissance(LocalDate value) {
-        this.dateNaissance = value;
-    }
-
-    /**
      * Obtient la valeur de la propriété idClient.
      * 
      */
@@ -145,35 +117,6 @@ public class Client {
     }
 
     /**
-     * Gets the value of the listeAttributs property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the listeAttributs property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getListeAttributs().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link String }
-     * 
-     * 
-     */
-    public List<String> getListeAttributs() {
-        if (listeAttributs == null) {
-            listeAttributs = new ArrayList<String>();
-        }
-        return this.listeAttributs;
-    }
-
-	/**
      * Obtient la valeur de la propriété mail.
      * 
      * @return
@@ -283,6 +226,30 @@ public class Client {
      */
     public void setPrenom(String value) {
         this.prenom = value;
+    }
+
+    /**
+     * Obtient la valeur de la propriété dateNaissance.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getDateNaissance() {
+        return dateNaissance;
+    }
+
+    /**
+     * Définit la valeur de la propriété dateNaissance.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setDateNaissance(XMLGregorianCalendar value) {
+        this.dateNaissance = value;
     }
 
 }
