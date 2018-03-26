@@ -11,11 +11,10 @@
 		<div>
 			Connexion
 			<fieldset>				
-				login : <input type="texte" name="login"/> <br>
+				login : <input type="text" name="login"/> <br>
 				password : <input type="password" name="password"/> <br>
-			</fieldset>
-			<br>
-			<a href="Recherche.jsp"><input type="submit" value="Connexion"/></a>
+			</fieldset><br>
+			<a href="Recherche.jsp"><input type="submit" value="Connexion"/></a><br>
 		</div>
 	</body>
 </html>

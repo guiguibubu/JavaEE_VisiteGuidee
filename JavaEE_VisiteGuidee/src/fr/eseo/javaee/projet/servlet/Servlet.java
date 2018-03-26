@@ -53,28 +53,26 @@ public class Servlet extends HttpServlet {
 		reservation.setCodeVisite(visite);
 		reservation.setCodeClient(client);
 
-//		/**
-//		 * initialisation des services
-//		 */
-//		ReservationVisiteService service = new ReservationVisiteService();
-//		ReservationVisiteSEI port = service.getReservationVisitePort();
-//		int code = 0;
-//		
-//		try {
-//			code = port.reserverVisite(reservation);
-//		} catch (SQLException_Exception e) {
-//			// TODO G�rer l'exception pour la transmettre � l'IHM
-//			e.printStackTrace();
-//		}
-//
-//		/**
-//		 * creation de la session
-//		 */
-//		HttpSession session = request.getSession();
-//		session.setAttribute("resultat", code);
+		/**
+		 * initialisation des services
+		 */
+		ReservationVisiteService service = new ReservationVisiteService();
+		ReservationVisiteSEI port = service.getReservationVisitePort();
+		int code = 0;
+		
+		try {
+			code = port.reserverVisite(reservation);
+		} catch (SQLException_Exception e) {
+			// TODO G�rer l'exception pour la transmettre � l'IHM
+			e.printStackTrace();
+		}
 
+		/**
+		 * creation de la session
+		 */
 		HttpSession session = request.getSession();
-		session.setAttribute("resultat", 0);
+		session.setAttribute("resultat", code);
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("Paiement.jsp");
 		dispatcher.forward(request, response);
 	}

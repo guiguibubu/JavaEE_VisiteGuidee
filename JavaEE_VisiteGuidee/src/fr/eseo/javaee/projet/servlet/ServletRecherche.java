@@ -57,29 +57,30 @@ public class ServletRecherche extends HttpServlet {
 			System.out.println(e);
 		}
 
-//		/**
-//		 * initialisation des services
-//		 */
-//		ReservationVisiteService service = new ReservationVisiteService();
-//		ReservationVisiteSEI port = service.getReservationVisitePort();
-//
-//
-//		List<Visite> visites = new ArrayList<Visite>();
-//		try {
-//			visites = port.trouverVisite(visite);
-//		} catch (SQLException_Exception e) {
-//			// TODO G�rer l'exception pour la transmettre � l'IHM
-//			e.printStackTrace();
-//		}
-//		int nbr = visites.size();
-//
-//		/**
-//		 * creation de la session
-//		 */
-//		HttpSession session = request.getSession();
-//		session.setAttribute("visites", visites);
-//		session.setAttribute("taille", nbr);
+		/**
+		 * initialisation des services
+		 */
+		ReservationVisiteService service = new ReservationVisiteService();
+		ReservationVisiteSEI port = service.getReservationVisitePort();
 
+
+		List<Visite> visites = new ArrayList<Visite>();
+		try {
+			visites = port.trouverVisite(visite);
+		} catch (SQLException_Exception e) {
+			// TODO G�rer l'exception pour la transmettre � l'IHM
+			e.printStackTrace();
+		}
+		int nbr = visites.size();
+
+		/**
+		 * creation de la session
+		 */
+		HttpSession session = request.getSession();
+		session.setAttribute("visites", visites);
+		session.setAttribute("taille", nbr);
+
+		session.setAttribute("type", request.getParameter("typeDeVisite"));
 		RequestDispatcher dispatcher = request.getRequestDispatcher("GestionVisites.jsp");
 		dispatcher.forward(request, response);
 	}

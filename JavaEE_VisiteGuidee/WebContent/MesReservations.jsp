@@ -17,9 +17,10 @@
 						<option value="num">Ma reservation <%=i%></option>
 					<%}%>
 				</select>
-			</fieldset>
-		</form><br>
-		<a href="MesReservations.jsp"><input type="submit" value="Annuler"/></a><br>
+				<br><br>
+			</fieldset><br>
+			<a href="MesReservations.jsp"><input type="submit" value="Annuler"/></a><br>
+		</form>
 		<a href="Recherche.jsp"><input type="submit" value="Retour"/></a>
 		
 		<% if(session.getAttribute("annulation") == "Succes") { %>	

@@ -20,6 +20,7 @@
 				</select>
 			</fieldset>
 		</form>
+		<%= session.getAttribute("type") %>
 		<a href="Paiement.jsp"><input type="submit" value="envoyer"/></a>
 	</body>
 </html>

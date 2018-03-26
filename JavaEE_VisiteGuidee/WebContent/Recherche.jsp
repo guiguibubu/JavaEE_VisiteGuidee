@@ -13,15 +13,14 @@
 				<form method="post" action="ServletRecherche">
 					Recherche
 					<fieldset>
-						typeDeVisite : <input type="texte" name="typeDeVisite"/> <br>
-						ville : <input type="texte" name="ville"/> <br>
-						dateVisite : <input type="date" name="dateVisite"/> <br>
-						prix : <input type="texte" name="prix"/> <br>
+						typeDeVisite : <input type="text" name="typeDeVisite"/> <br>
+						ville : <input type="text" name="ville"/> <br>
+						dateVisite : <input type="text" name="dateVisite"/> <br>
+						prix : <input type="text" name="prix"/> <br>
 					</fieldset>
 					<br><a href="GestionVisites.jsp"><input type="submit" value="Envoyer"/></a>
 				</form>
 				<a href="MesReservations.jsp"><input type="submit" value="Reservations"/></a>			
-			</div>
 			</div>
 		</div>
 	</body>
