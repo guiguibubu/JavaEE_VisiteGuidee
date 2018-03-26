@@ -32,10 +32,9 @@ public class ObjectFactory {
     private final static QName _ReserverVisiteResponse_QNAME = new QName("http://visiteguidee.projet.javaee.eseo.fr/", "reserverVisiteResponse");
     private final static QName _TrouverVisite_QNAME = new QName("http://visiteguidee.projet.javaee.eseo.fr/", "trouverVisite");
     private final static QName _TrouverVisiteResponse_QNAME = new QName("http://visiteguidee.projet.javaee.eseo.fr/", "trouverVisiteResponse");
-
     private final static QName _SQLException_QNAME = new QName("http://visiteguidee.projet.javaee.eseo.fr/", "SQLException");
 
-	/**
+    /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: fr.eseo.javaee.projet.visiteguidee
      * 
      */
@@ -114,7 +113,7 @@ public class ObjectFactory {
         return new SQLException();
     }
 
-	/**
+    /**
      * Create an instance of {@link Reservation }
      * 
      */
@@ -128,14 +127,6 @@ public class ObjectFactory {
      */
     public Client createClient() {
         return new Client();
-    }
-
-    /**
-     * Create an instance of {@link LocalDate }
-     * 
-     */
-    public LocalDate createLocalDate() {
-        return new LocalDate();
     }
 
     /**
@@ -226,7 +217,7 @@ public class ObjectFactory {
         return new JAXBElement<TrouverVisiteResponse>(_TrouverVisiteResponse_QNAME, TrouverVisiteResponse.class, null, value);
     }
 
-	/**
+    /**
      * Create an instance of {@link JAXBElement }{@code <}{@link SQLException }{@code >}}
      * 
      */

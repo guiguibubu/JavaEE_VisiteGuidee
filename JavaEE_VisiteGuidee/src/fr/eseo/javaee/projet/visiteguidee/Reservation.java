@@ -45,17 +45,14 @@ import javax.xml.bind.annotation.XmlType;
 public class Reservation {
 
     protected Client client;
-	protected Client codeClient;
     protected int codeReservation;
     @XmlElement(nillable = true)
     protected List<String> listeAttributs;
-	protected Visite codeVisite;
     protected int nombrePersonnes;
     protected boolean paiementEffectue;
-
     protected Visite visite;
 
-	/**
+    /**
      * Obtient la valeur de la propriété client.
      * 
      * @return
@@ -67,7 +64,7 @@ public class Reservation {
         return client;
     }
 
-	/**
+    /**
      * Définit la valeur de la propriété client.
      * 
      * @param value
@@ -77,30 +74,6 @@ public class Reservation {
      */
     public void setClient(Client value) {
         this.client = value;
-    }
-
-	/**
-     * Obtient la valeur de la propriété codeClient.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Client }
-     *     
-     */
-    public Client getCodeClient() {
-        return codeClient;
-    }
-
-    /**
-     * Définit la valeur de la propriété codeClient.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Client }
-     *     
-     */
-    public void setCodeClient(Client value) {
-        this.codeClient = value;
     }
 
     /**
@@ -148,30 +121,6 @@ public class Reservation {
         return this.listeAttributs;
     }
 
-	/**
-     * Obtient la valeur de la propriété codeVisite.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Visite }
-     *     
-     */
-    public Visite getCodeVisite() {
-        return codeVisite;
-    }
-
-    /**
-     * Définit la valeur de la propriété codeVisite.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Visite }
-     *     
-     */
-    public void setCodeVisite(Visite value) {
-        this.codeVisite = value;
-    }
-
     /**
      * Obtient la valeur de la propriété nombrePersonnes.
      * 
@@ -204,7 +153,7 @@ public class Reservation {
         this.paiementEffectue = value;
     }
 
-	/**
+    /**
      * Obtient la valeur de la propriété visite.
      * 
      * @return
@@ -216,7 +165,7 @@ public class Reservation {
         return visite;
     }
 
-	/**
+    /**
      * Définit la valeur de la propriété visite.
      * 
      * @param value

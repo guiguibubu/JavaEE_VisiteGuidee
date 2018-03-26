@@ -48,7 +48,7 @@ public class Visite {
     protected LocalDateTime dateVisite;
     @XmlElement(nillable = true)
     protected List<String> listeAttributs;
-	protected float prix;
+    protected float prix;
     protected String typeDeVisite;
     protected String ville;
 
@@ -121,7 +121,7 @@ public class Visite {
         return this.listeAttributs;
     }
 
-	/**
+    /**
      * Obtient la valeur de la propriété prix.
      * 
      */

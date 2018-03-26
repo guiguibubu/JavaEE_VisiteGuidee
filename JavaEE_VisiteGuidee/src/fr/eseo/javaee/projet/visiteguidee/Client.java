@@ -21,7 +21,6 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence&gt;
  *         &lt;element name="adresse" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="codePostal" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
- *         &lt;element name="dateNaissance" type="{http://visiteguidee.projet.javaee.eseo.fr/}localDate" minOccurs="0"/&gt;
  *         &lt;element name="idClient" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *         &lt;element name="listeAttributs" type="{http://www.w3.org/2001/XMLSchema}string" maxOccurs="unbounded" minOccurs="0"/&gt;
  *         &lt;element name="mail" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
@@ -41,7 +40,6 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "client", propOrder = {
     "adresse",
     "codePostal",
-    "dateNaissance",
     "idClient",
     "listeAttributs",
     "mail",
@@ -54,11 +52,10 @@ public class Client {
 
     protected String adresse;
     protected int codePostal;
-    protected LocalDate dateNaissance;
     protected int idClient;
     @XmlElement(nillable = true)
     protected List<String> listeAttributs;
-	protected String mail;
+    protected String mail;
     protected String nom;
     protected int numTelephone;
     protected String pays;
@@ -102,30 +99,6 @@ public class Client {
      */
     public void setCodePostal(int value) {
         this.codePostal = value;
-    }
-
-    /**
-     * Obtient la valeur de la propriété dateNaissance.
-     * 
-     * @return
-     *     possible object is
-     *     {@link LocalDate }
-     *     
-     */
-    public LocalDate getDateNaissance() {
-        return dateNaissance;
-    }
-
-    /**
-     * Définit la valeur de la propriété dateNaissance.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link LocalDate }
-     *     
-     */
-    public void setDateNaissance(LocalDate value) {
-        this.dateNaissance = value;
     }
 
     /**
@@ -173,7 +146,7 @@ public class Client {
         return this.listeAttributs;
     }
 
-	/**
+    /**
      * Obtient la valeur de la propriété mail.
      * 
      * @return

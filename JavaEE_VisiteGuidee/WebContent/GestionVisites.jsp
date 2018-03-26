@@ -9,7 +9,7 @@
 		<title>Reservation Visites</title>
 	</head>
 	<body>
-		<form method="get" action="Servlet">
+		<form method="post" action="Servlet">
 			Reservation
 			<fieldset>
 				<select name="voyage" size="4">
