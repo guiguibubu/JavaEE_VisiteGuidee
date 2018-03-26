@@ -24,9 +24,9 @@
 						<option value="num"><%=((List<Visite>)session.getAttribute("visites")).get(i).getTypeDeVisite()%></option>
 					<%}%>
 				</select>
-				<br><br>
 			</fieldset>
 		</form>
+		<%= session.getAttribute("type") %>
 		<a href="Paiement.jsp"><input type="submit" value="envoyer"/></a>
 	</body>
 </html>

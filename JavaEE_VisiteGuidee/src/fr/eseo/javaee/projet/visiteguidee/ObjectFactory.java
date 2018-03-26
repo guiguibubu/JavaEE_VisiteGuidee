@@ -32,7 +32,6 @@ public class ObjectFactory {
     private final static QName _ReserverVisiteResponse_QNAME = new QName("http://visiteguidee.projet.javaee.eseo.fr/", "reserverVisiteResponse");
     private final static QName _TrouverVisite_QNAME = new QName("http://visiteguidee.projet.javaee.eseo.fr/", "trouverVisite");
     private final static QName _TrouverVisiteResponse_QNAME = new QName("http://visiteguidee.projet.javaee.eseo.fr/", "trouverVisiteResponse");
-    private final static QName _SQLException_QNAME = new QName("http://visiteguidee.projet.javaee.eseo.fr/", "SQLException");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: fr.eseo.javaee.projet.visiteguidee
@@ -103,14 +102,6 @@ public class ObjectFactory {
      */
     public TrouverVisiteResponse createTrouverVisiteResponse() {
         return new TrouverVisiteResponse();
-    }
-
-    /**
-     * Create an instance of {@link SQLException }
-     * 
-     */
-    public SQLException createSQLException() {
-        return new SQLException();
     }
 
     /**
@@ -207,15 +198,6 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://visiteguidee.projet.javaee.eseo.fr/", name = "trouverVisiteResponse")
     public JAXBElement<TrouverVisiteResponse> createTrouverVisiteResponse(TrouverVisiteResponse value) {
         return new JAXBElement<TrouverVisiteResponse>(_TrouverVisiteResponse_QNAME, TrouverVisiteResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SQLException }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://visiteguidee.projet.javaee.eseo.fr/", name = "SQLException")
-    public JAXBElement<SQLException> createSQLException(SQLException value) {
-        return new JAXBElement<SQLException>(_SQLException_QNAME, SQLException.class, null, value);
     }
 
 }

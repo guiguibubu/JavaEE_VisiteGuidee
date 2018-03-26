@@ -14,7 +14,6 @@ import fr.eseo.javaee.projet.visiteguidee.Client;
 import fr.eseo.javaee.projet.visiteguidee.Reservation;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteSEI;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteService;
-import fr.eseo.javaee.projet.visiteguidee.SQLException_Exception;
 import fr.eseo.javaee.projet.visiteguidee.Visite;
 
 /**
@@ -53,28 +52,26 @@ public class Servlet extends HttpServlet {
 		reservation.setVisite(visite);
 		reservation.setClient(client);
 
-//		/**
-//		 * initialisation des services
-//		 */
-//		ReservationVisiteService service = new ReservationVisiteService();
-//		ReservationVisiteSEI port = service.getReservationVisitePort();
-//		int code = 0;
-//		
-//		try {
-//			code = port.reserverVisite(reservation);
-//		} catch (SQLException_Exception e) {
-//			// TODO G�rer l'exception pour la transmettre � l'IHM
-//			e.printStackTrace();
-//		}
-//
-//		/**
-//		 * creation de la session
-//		 */
-//		HttpSession session = request.getSession();
-//		session.setAttribute("resultat", code);
+		/**
+		 * initialisation des services
+		 */
+		ReservationVisiteService service = new ReservationVisiteService();
+		ReservationVisiteSEI port = service.getReservationVisitePort();
+		int code = 0;
+		
+		try {
+			code = port.reserverVisite(reservation);
+		} catch (Exception e) {
+			// TODO G�rer l'exception pour la transmettre � l'IHM
+			e.printStackTrace();
+		}
 
+		/**
+		 * creation de la session
+		 */
 		HttpSession session = request.getSession();
-		session.setAttribute("resultat", 0);
+		session.setAttribute("resultat", code);
+
 		RequestDispatcher dispatcher = request.getRequestDispatcher("Paiement.jsp");
 		dispatcher.forward(request, response);
 	}

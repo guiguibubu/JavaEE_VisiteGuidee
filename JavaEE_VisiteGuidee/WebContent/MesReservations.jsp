@@ -21,13 +21,15 @@
 				<br><br>
 			</fieldset>
 		</form>
+
 		<form action="MesReservations.jsp">
 			<button type="submit" value="Annuler">Annuler</button>
 		</form>
 		<form action="Recherche.jsp">
 			<button type="submit" value="Retour">Retour</button>
 		</form>
-		
+
+		<a href="Recherche.jsp"><input type="submit" value="Retour"/></a>		
 		<% if(request.getParameter("annulation") == "Succes") { %>	
 			Annulation confirmée.<br>
 			Récapitulatif<br>
