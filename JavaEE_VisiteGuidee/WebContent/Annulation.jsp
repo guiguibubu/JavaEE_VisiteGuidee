@@ -5,20 +5,16 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Gestion Visites - Annulation</title>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css" />	
 	</head>
 	<body>
-		Annulation
-		<fieldset>
-			<% if(request.getParameter("resultat") == null) { %>	
-				Paiement confirmé.<br>
-				Votre réservation a été pris en compte.<br>
-				Récapitulatif<br>
-				voyage <%= request.getParameter("voyage") %><br>
-			<% } else { %>
-				Erreur lors de la réservation.<br>
-			<% } %>
-		</fieldset><br>
-		
-	
+		<br>
+		<% if(request.getParameter("resultat") == null) { %>	
+			Annulation confirmée.<br>
+			Votre annulation a été prise en compte.<br>
+		<% } else { %>
+			Erreur lors de la réservation.<br>
+		<% } %>
+		<br>
 	</body>
 </html>
