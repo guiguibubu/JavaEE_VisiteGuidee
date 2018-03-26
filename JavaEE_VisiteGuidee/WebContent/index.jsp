@@ -13,12 +13,12 @@
 				<div class="col-lg-12">
 					<div class="panel panel-primary ">
 						<div class="panel-body">
-							
+							<form method="post" action="ServletIndex">
 							login : <input type="texte" name="login" placeholder="Login"/> <br>
 							password : <input type="password" name="password" placeholder="Password"/> <br>
 							
-							<a href="Recherche.jsp"><input type="submit" value="Connexion"/></a>
-							
+							<input type="submit" value="Connexion"/>
+							</form>
 						</div>
 					</div>
 				</div>
