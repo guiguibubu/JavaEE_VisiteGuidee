@@ -12,9 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import fr.eseo.javaee.projet.visiteguidee.Client;
 import fr.eseo.javaee.projet.visiteguidee.Reservation;
-import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteSEI;
-import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteService;
-import fr.eseo.javaee.projet.visiteguidee.SQLException_Exception;
 import fr.eseo.javaee.projet.visiteguidee.Visite;
 
 /**
@@ -50,9 +47,10 @@ public class Servlet extends HttpServlet {
 		/**
 		 * maj de la reservation
 		 */
-		reservation.setCodeVisite(visite);
-		reservation.setCodeClient(client);
+		reservation.setVisite(visite);
+		reservation.setClient(client);
 
+<<<<<<< HEAD
 		/**
 		 * initialisation des services
 		 */
@@ -66,6 +64,27 @@ public class Servlet extends HttpServlet {
 			// TODO G�rer l'exception pour la transmettre � l'IHM
 			e.printStackTrace();
 		}
+=======
+		//		/**
+		//		 * initialisation des services
+		//		 */
+		//		ReservationVisiteService service = new ReservationVisiteService();
+		//		ReservationVisiteSEI port = service.getReservationVisitePort();
+		//		int code = 0;
+		//
+		//		try {
+		//			code = port.reserverVisite(reservation);
+		//		} catch (SQLException_Exception e) {
+		//			// TODO G�rer l'exception pour la transmettre � l'IHM
+		//			e.printStackTrace();
+		//		}
+		//
+		//		/**
+		//		 * creation de la session
+		//		 */
+		//		HttpSession session = request.getSession();
+		//		session.setAttribute("resultat", code);
+>>>>>>> branch 'dev' of https://github.com/guiguibubu/JavaEE_VisiteGuidee
 
 		/**
 		 * creation de la session

@@ -1,6 +1,9 @@
 package fr.eseo.javaee.projet.servlet;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,10 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import fr.eseo.javaee.projet.visiteguidee.LocalDateTime;
+import fr.eseo.javaee.projet.tool.Convertisseur;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteSEI;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteService;
-import fr.eseo.javaee.projet.visiteguidee.SQLException_Exception;
 import fr.eseo.javaee.projet.visiteguidee.Visite;
 
 /**
@@ -24,6 +26,11 @@ import fr.eseo.javaee.projet.visiteguidee.Visite;
 @WebServlet("/ServletRecherche")
 public class ServletRecherche extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+	private static final String DATE_FORMATTER_STRING = "yyyy-MM-dd";
+	private static final String DATE_TIME_FORMATTER_STRING = "yyyy-MM-dd HH:mm:ss";
+	private static final DateFormat dateFormatter = new SimpleDateFormat(DATE_FORMATTER_STRING);
+	private static final DateFormat dateTimeFormatter = new SimpleDateFormat(DATE_TIME_FORMATTER_STRING);
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -38,23 +45,22 @@ public class ServletRecherche extends HttpServlet {
 	 */
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 
 		/**
 		 * initialisation des objets
 		 */
 		Visite visite = new Visite();
-		LocalDateTime dateTime = new LocalDateTime();
-		
-		visite.setTypeDeVisite(request.getParameter("typeDeVisite"));
-		visite.setVille(request.getParameter("ville"));
-		String date = request.getParameter("dateVisite");
-		visite.setDateVisite(dateTime);
-		
-		try{
-			visite.setPrix(Integer.parseInt(request.getParameter("prix")));
-		} catch (Exception e) {
-			System.out.println(e);
+		String typeVisite = request.getParameter("typeDeVisite");
+		String ville = request.getParameter("ville");
+		String dateTime = request.getParameter("dateVisiteMin");
+		String prix = request.getParameter("prix");
+		visite.setTypeDeVisite(typeVisite);
+		visite.setVille(ville);
+		try {
+			visite.setDateVisite(Convertisseur.asXMLGregorianCalendar(dateTimeFormatter.parse(dateTime)));
+			visite.setPrix(Integer.parseInt(prix));
+		} catch (ParseException e1) {
+			e1.printStackTrace();
 		}
 
 		/**
@@ -62,6 +68,20 @@ public class ServletRecherche extends HttpServlet {
 		 */
 		ReservationVisiteService service = new ReservationVisiteService();
 		ReservationVisiteSEI port = service.getReservationVisitePort();
+<<<<<<< HEAD
+=======
+
+		List<Visite> visites = new ArrayList<>();
+		visites = port.trouverVisite(visite);
+		int nbr = visites.size();
+
+		/**
+		 * creation de la session
+		 */
+		HttpSession session = request.getSession();
+		session.setAttribute("visites", visites);
+		session.setAttribute("taille", nbr);
+>>>>>>> branch 'dev' of https://github.com/guiguibubu/JavaEE_VisiteGuidee
 
 
 		List<Visite> visites = new ArrayList<Visite>();

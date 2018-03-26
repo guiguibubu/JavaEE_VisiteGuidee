@@ -9,6 +9,7 @@
 	</head>
 	<body>
 		<div class="container">
+<<<<<<< HEAD
 			<div>
 				<form method="post" action="ServletRecherche">
 					Recherche
@@ -21,6 +22,23 @@
 					<br><a href="GestionVisites.jsp"><input type="submit" value="Envoyer"/></a>
 				</form>
 				<a href="MesReservations.jsp"><input type="submit" value="Reservations"/></a>			
+=======
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="panel panel-primary ">
+						<div class="panel-body">
+							
+							<form method="post" action="ServletRecherche">
+								typeDeVisite : <input type="text" name="typeDeVisite" placeholder="Type de visite"/> <br>
+								ville : <input type="text" name="ville" placeholder="Ville"/> <br>
+								dateVisite : <input type="date" name="dateVisiteMin" placeholder="Date minimum"/> et <input type="date" name="dateVisiteMax" placeholder="Date maximum"/><br>
+								prix : <input type="text" name="prix" placeholder="Prix"/> <br><br>
+								<input type="submit" value="Envoyer"/>
+							</form>
+						</div>
+					</div>
+				</div>
+>>>>>>> branch 'dev' of https://github.com/guiguibubu/JavaEE_VisiteGuidee
 			</div>
 		</div>
 	</body>
