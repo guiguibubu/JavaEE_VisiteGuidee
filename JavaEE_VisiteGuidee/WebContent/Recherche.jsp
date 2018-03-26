@@ -6,36 +6,30 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Gestion Visites - Recherche</title>
 		<link rel="icon" href="/images/favicon.ico"/>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css" />
 	</head>
 	<body>
-		<div class="container">
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="panel panel-primary ">
-							<div class="panel-body">
-								
-								<form method="post" action="ServletRecherche">
-									typeDeVisite : <input type="text" name="typeDeVisite" placeholder="Type de visite"/> <br>
-									ville : <input type="text" name="ville" placeholder="Ville"/> <br>
-									dateVisite : <input type="date" name="dateVisiteMin" placeholder="Date minimum"/> et <input type="date" name="dateVisiteMax" placeholder="Date maximum"/><br>
-									prix : <input type="text" name="prix" placeholder="Prix"/> <br><br>
-									<input type="submit" value="Envoyer"/>
+		<div class="recherche">
+				<div class="form	">
+					<div class="col-lg-12">					
+						<form method="post" action="ServletRecherche">
+								<input type="text" name="typeDeVisite" placeholder="Type de visite"/> <br>
+								<input type="text" name="ville" placeholder="Ville"/> <br>
+								<input type="date" name="dateVisiteMin" placeholder="Date minimum"/><br>
+								<input type="text" name="prix" placeholder="Prix"/> <br><br>
+									
+								<form action="Recherche.jsp">
+									<button type="submit" value="Envoyer">Recherche</button>
 								</form>
+								<br>
+						</form>
 
-							</div>
-						</div>
 					</div>
-
-					<div class="col-lg-12">
-						<div class="panel panel-primary ">
-							<div class="panel-body">
-							
-								<a href="MesReservations.jsp"><input type="submit" value="Reservations"/></a>
-								
-							</div>
-						</div>
+					<div class="btn-reservation">
+						<form action="MesReservations.jsp">
+							<button type="submit" value="Reservations">Reservations</button>
+						</form>
 					</div>
-					
 				</div>
 			</div>
 		</div>
