@@ -18,7 +18,6 @@ import javax.servlet.http.HttpSession;
 import fr.eseo.javaee.projet.tool.Convertisseur;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteSEI;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteService;
-import fr.eseo.javaee.projet.visiteguidee.SQLException_Exception;
 import fr.eseo.javaee.projet.visiteguidee.Visite;
 
 /**
@@ -71,12 +70,7 @@ public class ServletRecherche extends HttpServlet {
 		ReservationVisiteSEI port = service.getReservationVisitePort();
 
 		List<Visite> visites = new ArrayList<>();
-		try {
-			visites = port.trouverVisite(visite);
-		} catch (SQLException_Exception e) {
-			// TODO G�rer l'exception pour la transmettre � l'IHM
-			e.printStackTrace();
-		}
+		visites = port.trouverVisite(visite);
 		int nbr = visites.size();
 
 		/**
