@@ -7,6 +7,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Reservation Visites</title>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css" />	
 	</head>
 	<body>
 		<form method="post" action="Servlet">

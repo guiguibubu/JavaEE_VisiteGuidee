@@ -5,6 +5,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Visualisation de mes Reservations</title>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css" />	
 	</head>
 	<body>
 		<form method="post" action="ServletAnnulation">
@@ -16,6 +17,7 @@
 					<%}%>
 
 				<br><br>
+
 			<a href="MesReservations.jsp"><input type="submit" value="Annuler"/></a><br>
 		</form>
 		<a href="Recherche.jsp"><input type="submit" value="Retour"/></a>
