@@ -68,26 +68,11 @@ public class ServletRecherche extends HttpServlet {
 		 */
 		ReservationVisiteService service = new ReservationVisiteService();
 		ReservationVisiteSEI port = service.getReservationVisitePort();
-<<<<<<< HEAD
-=======
-
-		List<Visite> visites = new ArrayList<>();
-		visites = port.trouverVisite(visite);
-		int nbr = visites.size();
-
-		/**
-		 * creation de la session
-		 */
-		HttpSession session = request.getSession();
-		session.setAttribute("visites", visites);
-		session.setAttribute("taille", nbr);
->>>>>>> branch 'dev' of https://github.com/guiguibubu/JavaEE_VisiteGuidee
-
 
 		List<Visite> visites = new ArrayList<Visite>();
 		try {
 			visites = port.trouverVisite(visite);
-		} catch (SQLException_Exception e) {
+		} catch (Exception e) {
 			// TODO G�rer l'exception pour la transmettre � l'IHM
 			e.printStackTrace();
 		}

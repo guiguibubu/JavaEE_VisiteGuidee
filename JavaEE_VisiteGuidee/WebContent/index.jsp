@@ -8,7 +8,6 @@
 		<link rel="icon" href="/images/favicon.ico"/>
 	</head>
 	<body>
-<<<<<<< HEAD
 		<div>
 			Connexion
 			<fieldset>				
@@ -16,23 +15,6 @@
 				password : <input type="password" name="password"/> <br>
 			</fieldset><br>
 			<a href="Recherche.jsp"><input type="submit" value="Connexion"/></a><br>
-=======
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="panel panel-primary ">
-						<div class="panel-body">
-							Login : <input type="texte" name="login" placeholder="Login"/> <br>
-							Password : <input type="password" name="password" placeholder="Password"/> <br>
-							
-							
-							<a href="Recherche.jsp"><input type="submit" value="Connect"/></a>
-							
-						</div>
-					</div>
-				</div>
-			</div>
->>>>>>> branch 'dev' of https://github.com/guiguibubu/JavaEE_VisiteGuidee
 		</div>
 	</body>
 </html>

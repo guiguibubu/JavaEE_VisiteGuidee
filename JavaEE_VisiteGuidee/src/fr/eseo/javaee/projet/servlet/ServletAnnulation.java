@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteSEI;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteService;
-import fr.eseo.javaee.projet.visiteguidee.SQLException_Exception;
 
 /**
  * Servlet implementation class ServletAnnulation
@@ -45,7 +44,7 @@ public class ServletAnnulation extends HttpServlet {
 		
 		try {
 			annulation = port.annulerVisite(Integer.parseInt(request.getParameter("code")));
-		} catch (SQLException_Exception e) {
+		} catch (Exception e) {
 			// TODO G�rer l'exception pour la transmettre � l'IHM
 			e.printStackTrace();
 		}
