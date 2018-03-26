@@ -57,14 +57,8 @@ public class ServletRecherche extends HttpServlet {
 		visite.setTypeDeVisite(typeVisite);
 		visite.setVille(ville);
 		try {
-<<<<<<< HEAD
 			visite.setDateVisite(Convertisseur.asXMLGregorianCalendar(dateFormatter.parse(dateTime)));
 		} catch (ParseException e1) {
-=======
-			//visite.setDateVisite(Convertisseur.asXMLGregorianCalendar(dateTimeFormatter.parse(dateTime)));
-			visite.setPrix(Integer.parseInt(prix));
-		} catch (/*Parse*/Exception e1) {
->>>>>>> branch 'dev' of https://github.com/guiguibubu/JavaEE_VisiteGuidee.git
 			e1.printStackTrace();
 		}
 		try {
