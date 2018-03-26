@@ -18,7 +18,6 @@ import javax.servlet.http.HttpSession;
 import fr.eseo.javaee.projet.tool.Convertisseur;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteSEI;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteService;
-import fr.eseo.javaee.projet.visiteguidee.SQLException_Exception;
 import fr.eseo.javaee.projet.visiteguidee.Visite;
 
 /**
@@ -46,7 +45,6 @@ public class ServletRecherche extends HttpServlet {
 	 */
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 
 		/**
 		 * initialisation des objets
@@ -54,9 +52,10 @@ public class ServletRecherche extends HttpServlet {
 		Visite visite = new Visite();
 		String typeVisite = request.getParameter("typeDeVisite");
 		String ville = request.getParameter("ville");
-		String dateTime = request.getParameter("dateVisite");
+		String dateTime = request.getParameter("dateVisiteMin");
 		String prix = request.getParameter("prix");
-
+		visite.setTypeDeVisite(typeVisite);
+		visite.setVille(ville);
 		try {
 			visite.setDateVisite(Convertisseur.asXMLGregorianCalendar(dateTimeFormatter.parse(dateTime)));
 			visite.setPrix(Integer.parseInt(prix));
@@ -71,12 +70,7 @@ public class ServletRecherche extends HttpServlet {
 		ReservationVisiteSEI port = service.getReservationVisitePort();
 
 		List<Visite> visites = new ArrayList<>();
-		try {
-			visites = port.trouverVisite(visite);
-		} catch (SQLException_Exception e) {
-			// TODO G�rer l'exception pour la transmettre � l'IHM
-			e.printStackTrace();
-		}
+		visites = port.trouverVisite(visite);
 		int nbr = visites.size();
 
 		/**

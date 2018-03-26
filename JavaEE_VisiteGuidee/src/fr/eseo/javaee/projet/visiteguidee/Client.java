@@ -3,9 +3,7 @@ package fr.eseo.javaee.projet.visiteguidee;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
@@ -26,7 +24,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *         &lt;element name="numTelephone" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *         &lt;element name="pays" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
  *         &lt;element name="prenom" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
- *         &lt;element name="dateNaissance" type="{http://www.w3.org/2001/XMLSchema}dateTime" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -44,8 +41,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
     "nom",
     "numTelephone",
     "pays",
-    "prenom",
-    "dateNaissance"
+    "prenom"
 })
 public class Client {
 
@@ -57,8 +53,6 @@ public class Client {
     protected int numTelephone;
     protected String pays;
     protected String prenom;
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar dateNaissance;
 
     /**
      * Obtient la valeur de la propriété adresse.
@@ -226,30 +220,6 @@ public class Client {
      */
     public void setPrenom(String value) {
         this.prenom = value;
-    }
-
-    /**
-     * Obtient la valeur de la propriété dateNaissance.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public XMLGregorianCalendar getDateNaissance() {
-        return dateNaissance;
-    }
-
-    /**
-     * Définit la valeur de la propriété dateNaissance.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public void setDateNaissance(XMLGregorianCalendar value) {
-        this.dateNaissance = value;
     }
 
 }
