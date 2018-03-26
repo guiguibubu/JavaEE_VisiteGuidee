@@ -9,21 +9,18 @@
 	</head>
 	<body>
 		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="panel panel-primary ">
-						<div class="panel-body">
-							
-							<form method="post" action="ServletRecherche">
-								typeDeVisite : <input type="text" name="typeDeVisite" placeholder="Type de visite"/> <br>
-								ville : <input type="text" name="ville" placeholder="Ville"/> <br>
-								dateVisite : <input type="date" name="dateVisiteMin" placeholder="Date minimum"/> et <input type="date" name="dateVisiteMax" placeholder="Date maximum"/><br>
-								prix : <input type="text" name="prix" placeholder="Prix"/> <br><br>
-								<input type="submit" value="Envoyer"/>
-							</form>
-						</div>
-					</div>
-				</div>
+			<div>
+				<form method="post" action="ServletRecherche">
+					Recherche
+					<fieldset>
+						typeDeVisite : <input type="text" name="typeDeVisite"/> <br>
+						ville : <input type="text" name="ville"/> <br>
+						dateVisite : <input type="text" name="dateVisite"/> <br>
+						prix : <input type="text" name="prix"/> <br>
+					</fieldset>
+					<br><a href="GestionVisites.jsp"><input type="submit" value="Envoyer"/></a>
+				</form>
+				<a href="MesReservations.jsp"><input type="submit" value="Reservations"/></a>
 			</div>
 		</div>
 	</body>

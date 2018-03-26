@@ -69,8 +69,13 @@ public class ServletRecherche extends HttpServlet {
 		ReservationVisiteService service = new ReservationVisiteService();
 		ReservationVisiteSEI port = service.getReservationVisitePort();
 
-		List<Visite> visites = new ArrayList<>();
-		visites = port.trouverVisite(visite);
+		List<Visite> visites = new ArrayList<Visite>();
+		try {
+			visites = port.trouverVisite(visite);
+		} catch (Exception e) {
+			// TODO G�rer l'exception pour la transmettre � l'IHM
+			e.printStackTrace();
+		}
 		int nbr = visites.size();
 
 		/**
@@ -80,6 +85,7 @@ public class ServletRecherche extends HttpServlet {
 		session.setAttribute("visites", visites);
 		session.setAttribute("taille", nbr);
 
+		session.setAttribute("type", request.getParameter("typeDeVisite"));
 		RequestDispatcher dispatcher = request.getRequestDispatcher("GestionVisites.jsp");
 		dispatcher.forward(request, response);
 	}

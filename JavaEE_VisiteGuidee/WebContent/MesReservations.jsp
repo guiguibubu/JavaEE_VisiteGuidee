@@ -18,12 +18,12 @@
 					<%}%>
 				</select>
 				<br><br>
-			</fieldset>
+			</fieldset><br>
+			<a href="MesReservations.jsp"><input type="submit" value="Annuler"/></a><br>
 		</form>
-		<a href="MesReservations.jsp"><input type="submit" value="Annuler"/></a><br>
 		<a href="Recherche.jsp"><input type="submit" value="Retour"/></a>
 		
-		<% if(request.getParameter("annulation") == "Succes") { %>	
+		<% if(session.getAttribute("annulation") == "Succes") { %>	
 			Annulation confirmée.<br>
 			Récapitulatif<br>
 			Annulation : voyage <%= request.getParameter("code") %><br>
