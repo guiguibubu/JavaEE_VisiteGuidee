@@ -12,16 +12,24 @@
 		<form method="post" action="Servlet">
 			Reservation
 			<fieldset>
-				<select name="voyage" size="4">
+				<select name="voyage" size=8>
 				<!--  faire une boucle qui va générer les balises "option"  -->
-					<%int size = 5;%>
-					<%for(int i = 1; i<=size; i++) { %>
-						<option value="num">voyage <%=i%></option>
+					<%for(int i = 1; i<=(int)session.getAttribute("taille")
+										/*((List<Visite>)session.getAttribute("visites")).size()*/
+										; i++) { %>
+						<option value="num">voyage <%=i%> - <%=((List<Visite>)session.getAttribute("visites")).get(i-1).getTypeDeVisite()%></option>
 					<%}%>
-					<%int nbVisite =  (int)session.getAttribute("taille");%>
-					<%for(int i = 0; i<nbVisite; i++) { %>
-						<option value="num"><%=((List<Visite>)session.getAttribute("visites")).get(i).getTypeDeVisite()%></option>
-					<%}%>
+					
+					
+					
+					
+<%-- 					<%int nbVisite =  (int)session.getAttribute("taille");%> --%>
+<%-- 					<%for(int i = 0; i<nbVisite; i++) { %> --%>
+<%-- 						<option value="num"><%=((List<Visite>)session.getAttribute("visites")).get(i).getTypeDeVisite()%></option> --%>
+<%-- 					<%}%> --%>
+				
+				
+				
 				</select>
 				<br><br>
 			</fieldset>
