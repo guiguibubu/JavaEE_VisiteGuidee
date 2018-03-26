@@ -15,7 +15,7 @@
 					<fieldset>
 						typeDeVisite : <input type="text" name="typeDeVisite"/> <br>
 						ville : <input type="text" name="ville"/> <br>
-						dateVisite : <input type="text" name="dateVisite"/> <br>
+						dateVisite : <input type="date" name="dateVisite"/> <br>
 						prix : <input type="text" name="prix"/> <br>
 					</fieldset>
 					<br><a href="GestionVisites.jsp"><input type="submit" value="Envoyer"/></a>
