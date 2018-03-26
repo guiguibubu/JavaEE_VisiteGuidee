@@ -85,7 +85,6 @@ public class ServletRecherche extends HttpServlet {
 		session.setAttribute("visites", visites);
 		session.setAttribute("taille", nbr);
 
-		session.setAttribute("type", request.getParameter("typeDeVisite"));
 		RequestDispatcher dispatcher = request.getRequestDispatcher("GestionVisites.jsp");
 		dispatcher.forward(request, response);
 	}
