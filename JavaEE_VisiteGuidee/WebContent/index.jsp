@@ -6,15 +6,24 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Gestion Visites - Accueil</title>
 		<link rel="icon" href="/images/favicon.ico"/>
+		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css" />
 	</head>
 	<body>
-		<div>
-			Connexion
-			<fieldset>				
-				login : <input type="text" name="login"/> <br>
-				password : <input type="password" name="password"/> <br>
-			</fieldset><br>
-			<a href="Recherche.jsp"><input type="submit" value="Connexion"/></a><br>
+		<div class="login-page">
+				<div class="form">
+					<div class="form-login">
+						<div class="panel panel-primary ">
+							<div class="panel-body">
+								
+								<input type="text" name="login" placeholder="username"/> <br>
+								<input type="password" name="password" placeholder="password"/> <br>
+								<form action="Recherche.jsp">
+									<button type="submit" value="Connexion">connexion</button>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
 		</div>
 	</body>
 </html>
