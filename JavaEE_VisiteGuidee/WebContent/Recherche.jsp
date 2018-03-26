@@ -10,8 +10,7 @@
 	</head>
 	<body>
 		<div class="recherche">
-				<div class="form	">
-					<div class="col-lg-12">					
+				<div class="form">				
 						<form method="post" action="ServletRecherche">
 								<input type="text" name="typeDeVisite" placeholder="Type de visite"/> <br>
 								<input type="text" name="ville" placeholder="Ville"/> <br>
@@ -23,7 +22,6 @@
 								</form>
 								<br>
 						</form>
-
 					</div>
 					<div class="btn-reservation">
 						<form action="MesReservations.jsp">

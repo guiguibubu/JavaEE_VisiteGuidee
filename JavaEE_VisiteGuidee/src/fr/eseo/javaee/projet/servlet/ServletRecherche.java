@@ -52,7 +52,7 @@ public class ServletRecherche extends HttpServlet {
 		Visite visite = new Visite();
 		String typeVisite = request.getParameter("typeDeVisite");
 		String ville = request.getParameter("ville");
-		String dateTime = request.getParameter("dateVisiteMin");
+		String dateTime = request.getParameter("dateVisite");
 		String prix = request.getParameter("prix");
 		visite.setTypeDeVisite(typeVisite);
 		visite.setVille(ville);
