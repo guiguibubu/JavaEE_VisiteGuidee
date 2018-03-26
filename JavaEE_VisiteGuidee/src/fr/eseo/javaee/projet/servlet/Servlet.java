@@ -50,8 +50,8 @@ public class Servlet extends HttpServlet {
 		/**
 		 * maj de la reservation
 		 */
-		reservation.setCodeVisite(visite);
-		reservation.setCodeClient(client);
+		reservation.setVisite(visite);
+		reservation.setClient(client);
 
 		/**
 		 * initialisation des services

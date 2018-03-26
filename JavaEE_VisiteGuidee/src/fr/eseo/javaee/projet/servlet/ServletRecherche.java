@@ -55,7 +55,7 @@ public class ServletRecherche extends HttpServlet {
 		ReservationVisiteSEI port = service.getReservationVisitePort();
 
 
-		List<Visite> visites = new ArrayList<Visite>();
+		List<Visite> visites = new ArrayList<>();
 		try {
 			visites = port.trouverVisite(visite);
 		} catch (SQLException_Exception e) {
