@@ -18,7 +18,6 @@
 						<option value="num">voyage <%=i%></option>
 					<%}%>
 				</select>
-				<br><br>
 			</fieldset>
 		</form>
 		<a href="Paiement.jsp"><input type="submit" value="envoyer"/></a>
