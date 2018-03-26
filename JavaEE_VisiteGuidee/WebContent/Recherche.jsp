@@ -19,13 +19,12 @@
 									
 								<form action="Recherche.jsp">
 									<button type="submit" value="Envoyer">Recherche</button>
+									
 								</form>
-								<br>
-						</form>
-					</div>
-					<div class="btn-reservation">
-						<form action="MesReservations.jsp">
-							<button type="submit" value="Reservations">Reservations</button>
+								<br>	
+								<form action="MesReservations.jsp">
+									<button type="submit" value="Reservations">Reservations</button>
+								</form>
 						</form>
 					</div>
 				</div>
