@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eseo.javaee.projet.tool.Convertisseur;
 import fr.eseo.javaee.projet.visiteguidee.Client;
 import fr.eseo.javaee.projet.visiteguidee.Reservation;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteSEI;
@@ -44,11 +45,25 @@ public class Servlet extends HttpServlet {
 		Reservation reservation = new Reservation();
 		Visite visite = new Visite();
 		Client client = new Client();
-		try{
-			visite.setCodeVisite(Integer.parseInt(request.getParameter("voyage")));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+
+		String voyage = request.getParameter("voyage");
+		String[] parts = voyage.split(" - ");
+		visite.setTypeDeVisite(parts[0]);
+		visite.setVille(parts[1]);
+		visite.setDateVisite(Convertisseur.asXMLGregorianCalendar(parts[2]));
+		visite.setPrix(Convertisseur.asInt(parts[3]));
+
+		/**
+		 * fonction utilisateur pas encore implantée
+		 */
+		client.setAdresse("");
+		client.setCodePostal(0);
+		client.setIdClient(0);
+		client.setMail("");
+		client.setNom("");
+		client.setNumTelephone(0);
+		client.setPays("");
+		client.setPrenom("");
 
 		/**
 		 * maj de la reservation
