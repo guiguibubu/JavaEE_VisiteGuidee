@@ -12,17 +12,19 @@
 	<body>
 		<form method="post" action="Servlet">
 			Reservation
-			<!--  faire une boucle qui va générer les balises "option"  -->
-			<%for(int i = 1; i<=(int)session.getAttribute("taille")
-								/*((List<Visite>)session.getAttribute("visites")).size()*/
-								; i++) { %>
-			<%String affichage = new String(); %>
-			<%affichage = 	((List<Visite>)session.getAttribute("visites")).get(i-1).getTypeDeVisite() + ((List<Visite>)session.getAttribute("visites")).get(i-1).getVille() + ((List<Visite>)session.getAttribute("visites")).get(i-1).getDateVisite() + ((List<Visite>)session.getAttribute("visites")).get(i-1).getPrix();%>
-			<option value="num">voyage <%=i%> - <%=affichage%></option>
-			<%}%>
-			
+			<fieldset>
+				<select name="voyage" size="8">
+					<%for(int i = 1; i<=(int)session.getAttribute("taille")
+										/*((List<Visite>)session.getAttribute("visites")).size()*/
+										; i++) { %>
+					<%String affichage = new String(); %>
+					<%affichage = ((List<Visite>)session.getAttribute("visites")).get(i-1).getTypeDeVisite() + ((List<Visite>)session.getAttribute("visites")).get(i-1).getVille() + ((List<Visite>)session.getAttribute("visites")).get(i-1).getDateVisite() + ((List<Visite>)session.getAttribute("visites")).get(i-1).getPrix();%>
+					<option value=<%=((List<Visite>)session.getAttribute("visites")).get(i-1).getTypeDeVisite() + ((List<Visite>)session.getAttribute("visites")).get(i-1).getVille() + ((List<Visite>)session.getAttribute("visites")).get(i-1).getDateVisite() + ((List<Visite>)session.getAttribute("visites")).get(i-1).getPrix()%>>voyage <%=i%> - <%=affichage%></option>
+					<%}%>
+				</select>
+			</fieldset>
 		</form>
-		<%= session.getAttribute("type") %>
-		<a href="Paiement.jsp"><input type="submit" value="envoyer"/></a>
+		<a href="Paiement.jsp"><input type="submit" value="Reserver"/></a>
+		<a href="Recherche.jsp"><input type="submit" value="Faire une autre recherche"/></a><br>
 	</body>
 </html>
