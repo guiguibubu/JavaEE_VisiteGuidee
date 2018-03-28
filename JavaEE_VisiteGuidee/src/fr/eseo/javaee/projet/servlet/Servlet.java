@@ -1,6 +1,9 @@
 package fr.eseo.javaee.projet.servlet;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eseo.javaee.projet.tool.Convertisseur;
 import fr.eseo.javaee.projet.visiteguidee.Client;
 import fr.eseo.javaee.projet.visiteguidee.Reservation;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteSEI;
@@ -22,6 +26,8 @@ import fr.eseo.javaee.projet.visiteguidee.Visite;
 @WebServlet(description = "Servlet principale", urlPatterns = { "/Servlet" })
 public class Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final String DATE_FORMATTER_STRING = "yyyy-MM-dd";
+	private static final DateFormat dateFormatter = new SimpleDateFormat(DATE_FORMATTER_STRING);
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -44,12 +50,35 @@ public class Servlet extends HttpServlet {
 		Reservation reservation = new Reservation();
 		Visite visite = new Visite();
 		Client client = new Client();
+		
+		String voyage = request.getParameter("voyage");
+		String[] parts = voyage.split(" - ");
+		visite.setTypeDeVisite(parts[0]);
+		visite.setVille(parts[1]);
+		try {
+			visite.setDateVisite(Convertisseur.asXMLGregorianCalendar(dateFormatter.parse(parts[2])));
+		} catch (ParseException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try{
-			visite.setCodeVisite(Integer.parseInt(request.getParameter("voyage")));
+			visite.setPrix(Integer.parseInt(parts[3]));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
+		/**
+		 * fonction utilisateur pas encore implantée
+		 */
+		client.setAdresse("");
+		client.setCodePostal(0);
+		client.setIdClient(0);
+		client.setMail("");
+		client.setNom("");
+		client.setNumTelephone(0);
+		client.setPays("");
+		client.setPrenom("");
+		
 		/**
 		 * maj de la reservation
 		 */

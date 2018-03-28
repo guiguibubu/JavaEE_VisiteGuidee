@@ -18,8 +18,8 @@
 										/*((List<Visite>)session.getAttribute("visites")).size()*/
 										; i++) { %>
 					<%String affichage = new String(); %>
-					<%affichage = ((List<Visite>)session.getAttribute("visites")).get(i-1).getTypeDeVisite() + ((List<Visite>)session.getAttribute("visites")).get(i-1).getVille() + ((List<Visite>)session.getAttribute("visites")).get(i-1).getDateVisite() + ((List<Visite>)session.getAttribute("visites")).get(i-1).getPrix();%>
-					<option value=<%=((List<Visite>)session.getAttribute("visites")).get(i-1).getTypeDeVisite() + ((List<Visite>)session.getAttribute("visites")).get(i-1).getVille() + ((List<Visite>)session.getAttribute("visites")).get(i-1).getDateVisite() + ((List<Visite>)session.getAttribute("visites")).get(i-1).getPrix()%>>voyage <%=i%> - <%=affichage%></option>
+					<%affichage = ((List<Visite>)session.getAttribute("visites")).get(i-1).getTypeDeVisite() +" - "+ ((List<Visite>)session.getAttribute("visites")).get(i-1).getVille() +" - "+ ((List<Visite>)session.getAttribute("visites")).get(i-1).getDateVisite() +" - "+ ((List<Visite>)session.getAttribute("visites")).get(i-1).getPrix();%>
+					<option value=<%=((List<Visite>)session.getAttribute("visites")).get(i-1).getTypeDeVisite() +" - "+ ((List<Visite>)session.getAttribute("visites")).get(i-1).getVille() +" - "+ ((List<Visite>)session.getAttribute("visites")).get(i-1).getDateVisite() +" - "+ ((List<Visite>)session.getAttribute("visites")).get(i-1).getPrix()%>>voyage <%=i%> - <%=affichage%></option>
 					<%}%>
 				</select>
 			</fieldset>

@@ -25,5 +25,6 @@
 			<a href="Recherche.jsp"><input type="submit" value="Faire une autre reservation."/></a>
 		<% } %>
 	<a href="index.jsp"><input type="submit" value="Quitter"/></a>
+	<%= session.getAttribute("test") %>
 </body>
 </html>
