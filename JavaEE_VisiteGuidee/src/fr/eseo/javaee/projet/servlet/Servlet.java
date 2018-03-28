@@ -1,6 +1,8 @@
 package fr.eseo.javaee.projet.servlet;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,6 +25,8 @@ import fr.eseo.javaee.projet.visiteguidee.Visite;
 @WebServlet(description = "Servlet principale", urlPatterns = { "/Servlet" })
 public class Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static final String DATE_FORMATTER_STRING = "yyyy-MM-dd";
+	private static final DateFormat dateFormatter = new SimpleDateFormat(DATE_FORMATTER_STRING);
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -52,6 +56,18 @@ public class Servlet extends HttpServlet {
 		visite.setVille(parts[1]);
 		visite.setDateVisite(Convertisseur.asXMLGregorianCalendar(parts[2]));
 		visite.setPrix(Convertisseur.asInt(parts[3]));
+
+		/**
+		 * fonction utilisateur pas encore implantée
+		 */
+		client.setAdresse("");
+		client.setCodePostal(0);
+		client.setIdClient(0);
+		client.setMail("");
+		client.setNom("");
+		client.setNumTelephone(0);
+		client.setPays("");
+		client.setPrenom("");
 
 		/**
 		 * fonction utilisateur pas encore implantée

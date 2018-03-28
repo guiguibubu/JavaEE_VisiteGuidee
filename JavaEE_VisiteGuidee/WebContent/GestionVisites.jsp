@@ -12,6 +12,7 @@
 	<body>
 		<form method="post" action="Servlet">
 			Reservation
+<<<<<<< HEAD
 			<input type="hidden" name="idVisite" id="idVisite" value="" />
 			<%List<Visite> listVisite = (List<Visite>)session.getAttribute("visites");
 			int nbVisite = listVisite.size();%>
@@ -26,7 +27,21 @@
 				</button>
 				<br> 
 			<%}%>
+=======
+			<fieldset>
+				<select name="voyage" size="8">
+					<%for(int i = 1; i<=(int)session.getAttribute("taille")
+										/*((List<Visite>)session.getAttribute("visites")).size()*/
+										; i++) { %>
+					<%String affichage = new String(); %>
+					<%affichage = ((List<Visite>)session.getAttribute("visites")).get(i-1).getTypeDeVisite() +" - "+ ((List<Visite>)session.getAttribute("visites")).get(i-1).getVille() +" - "+ ((List<Visite>)session.getAttribute("visites")).get(i-1).getDateVisite() +" - "+ ((List<Visite>)session.getAttribute("visites")).get(i-1).getPrix();%>
+					<option value=<%=((List<Visite>)session.getAttribute("visites")).get(i-1).getTypeDeVisite() +" - "+ ((List<Visite>)session.getAttribute("visites")).get(i-1).getVille() +" - "+ ((List<Visite>)session.getAttribute("visites")).get(i-1).getDateVisite() +" - "+ ((List<Visite>)session.getAttribute("visites")).get(i-1).getPrix()%>>voyage <%=i%> - <%=affichage%></option>
+					<%}%>
+				</select>
+			</fieldset>
+>>>>>>> branch 'dev' of https://github.com/guiguibubu/JavaEE_VisiteGuidee.git
 		</form>
+<<<<<<< HEAD
 <%-- 		<%=session.getAttribute("type")%> --%>
 		<a href="Paiement.jsp"><input type="submit" value="envoyer"/></a>
 		<a href="Recherche.jsp"><input type="submit" value="Faire une autre recherche"/></a><br>
@@ -37,5 +52,9 @@
 			document.getElementById('idVisite').value = idVisite;
 		}
 		</script>
+=======
+		<a href="Paiement.jsp"><input type="submit" value="Reserver"/></a>
+		<a href="Recherche.jsp"><input type="submit" value="Faire une autre recherche"/></a><br>
+>>>>>>> branch 'dev' of https://github.com/guiguibubu/JavaEE_VisiteGuidee.git
 	</body>
 </html>
