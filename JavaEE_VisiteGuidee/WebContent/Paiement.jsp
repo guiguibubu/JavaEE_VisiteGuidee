@@ -5,7 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Confirmation paiement</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css" />	
+<jsp:include page="importStyle.jsp"/>
 </head>
 <body>
 	Paiement
@@ -25,5 +25,6 @@
 			<a href="Recherche.jsp"><input type="submit" value="Faire une autre reservation."/></a>
 		<% } %>
 	<a href="index.jsp"><input type="submit" value="Quitter"/></a>
+	<%= session.getAttribute("test") %>
 </body>
 </html>

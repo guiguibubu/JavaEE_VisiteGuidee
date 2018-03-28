@@ -1,9 +1,6 @@
 package fr.eseo.javaee.projet.servlet;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,10 +24,10 @@ import fr.eseo.javaee.projet.visiteguidee.Visite;
 public class ServletRecherche extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private static final String DATE_FORMATTER_STRING = "yyyy-MM-dd";
-	private static final String DATE_TIME_FORMATTER_STRING = "yyyy-MM-dd HH:mm:ss";
-	private static final DateFormat dateFormatter = new SimpleDateFormat(DATE_FORMATTER_STRING);
-	private static final DateFormat dateTimeFormatter = new SimpleDateFormat(DATE_TIME_FORMATTER_STRING);
+	//	private static final String DATE_FORMATTER_STRING = "yyyy-MM-dd";
+	//	private static final String DATE_TIME_FORMATTER_STRING = "yyyy-MM-dd HH:mm:ss";
+	//	private static final DateFormat dateFormatter = new SimpleDateFormat(DATE_FORMATTER_STRING);
+	//	private static final DateFormat dateTimeFormatter = new SimpleDateFormat(DATE_TIME_FORMATTER_STRING);
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -56,17 +53,8 @@ public class ServletRecherche extends HttpServlet {
 		String prix = request.getParameter("prix");
 		visite.setTypeDeVisite(typeVisite);
 		visite.setVille(ville);
-		try {
-			visite.setDateVisite(Convertisseur.asXMLGregorianCalendar(dateFormatter.parse(dateTime)));
-		} catch (ParseException e1) {
-			e1.printStackTrace();
-		}
-		try {
-			visite.setPrix(Integer.parseInt(prix));
-		} catch (NumberFormatException e1) {
-			visite.setPrix(-1);
-			e1.printStackTrace();
-		}
+		visite.setDateVisite(Convertisseur.asXMLGregorianCalendar(dateTime));
+		visite.setPrix(Convertisseur.asInt(prix));
 
 		/**
 		 * initialisation des services

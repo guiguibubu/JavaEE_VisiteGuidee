@@ -5,7 +5,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Visualisation de mes Reservations</title>
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css" />	
+		<jsp:include page="importStyle.jsp"/>	
 	</head>
 	<body>
 		<form method="post" action="ServletAnnulation">

@@ -5,8 +5,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Gestion Visites - Recherche</title>
-		<link rel="icon" href="/images/favicon.ico"/>
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css" />
+		<jsp:include page="importStyle.jsp"/>
 	</head>
 	<body>
 		<div class="recherche">
@@ -19,7 +18,6 @@
 									
 								<form action="Recherche.jsp">
 									<button type="submit" value="Envoyer">Recherche</button>
-									
 								</form>
 								<br>	
 								<form action="MesReservations.jsp">
