@@ -7,22 +7,35 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Reservation Visites</title>
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css" />	
+		<jsp:include page="importStyle.jsp"/>
 	</head>
 	<body>
 		<form method="post" action="Servlet">
 			Reservation
-			<!--  faire une boucle qui va générer les balises "option"  -->
-			<%for(int i = 1; i<=(int)session.getAttribute("taille")
-								/*((List<Visite>)session.getAttribute("visites")).size()*/
-								; i++) { %>
-			<%String affichage = new String(); %>
-			<%affichage = 	((List<Visite>)session.getAttribute("visites")).get(i-1).getTypeDeVisite() + ((List<Visite>)session.getAttribute("visites")).get(i-1).getVille() + ((List<Visite>)session.getAttribute("visites")).get(i-1).getDateVisite() + ((List<Visite>)session.getAttribute("visites")).get(i-1).getPrix();%>
-			<option value="num">voyage <%=i%> - <%=affichage%></option>
+			<input type="hidden" name="idVisite" id="idVisite" value="" />
+			<%List<Visite> listVisite = (List<Visite>)session.getAttribute("visites");
+			int nbVisite = listVisite.size();%>
+			<%for(int i = 0; i<nbVisite; i++) { %>
+				<%
+				Visite visite = listVisite.get(i);
+				String affichage =	visite.getTypeDeVisite()+" "+visite.getVille()+" "+visite.getDateVisite()+" "+visite.getPrix();
+				%>
+				voyage <%=i%> - <%=affichage%>
+				<button onclick="changeIdVisite(<%=visite.getCodeVisite()%>);">
+				Réserver
+				</button>
+				<br> 
 			<%}%>
-			
 		</form>
-		<%= session.getAttribute("type") %>
+<%-- 		<%=session.getAttribute("type")%> --%>
 		<a href="Paiement.jsp"><input type="submit" value="envoyer"/></a>
+		<a href="Recherche.jsp"><input type="submit" value="Faire une autre recherche"/></a><br>
+		
+		
+		<script charset="UTF-8">
+		function changeIdVisite(idVisite) {
+			document.getElementById('idVisite').value = idVisite;
+		}
+		</script>
 	</body>
 </html>
