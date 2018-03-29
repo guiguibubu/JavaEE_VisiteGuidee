@@ -5,6 +5,7 @@
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<title>Gestion Visites - Annulation</title>
+		<jsp:include page="importStyle.jsp"/>
 	</head>
 	<body>
 		Annulation

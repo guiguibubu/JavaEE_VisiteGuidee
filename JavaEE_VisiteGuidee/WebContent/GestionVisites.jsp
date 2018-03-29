@@ -7,11 +7,27 @@
 	<head>
 		<meta charset="UTF-8">
 		<title>Reservation Visites</title>
-		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/styles/main.css" />	
+		<jsp:include page="importStyle.jsp"/>
 	</head>
 	<body>
 		<form method="post" action="Servlet">
 			Reservation
+<<<<<<< HEAD
+			<input type="hidden" name="idVisite" id="idVisite" value="" />
+			<%List<Visite> listVisite = (List<Visite>)session.getAttribute("visites");
+			int nbVisite = listVisite.size();%>
+			<%for(int i = 0; i<nbVisite; i++) { %>
+				<%
+				Visite visite = listVisite.get(i);
+				String affichage =	visite.getTypeDeVisite()+" "+visite.getVille()+" "+visite.getDateVisite()+" "+visite.getPrix();
+				%>
+				voyage <%=i%> - <%=affichage%>
+				<button onclick="changeIdVisite(<%=visite.getCodeVisite()%>);">
+				Réserver
+				</button>
+				<br> 
+			<%}%>
+=======
 			<fieldset>
 				<select name="voyage" size="8">
 					<%for(int i = 1; i<=(int)session.getAttribute("taille")
@@ -23,8 +39,22 @@
 					<%}%>
 				</select>
 			</fieldset>
+>>>>>>> branch 'dev' of https://github.com/guiguibubu/JavaEE_VisiteGuidee.git
 		</form>
+<<<<<<< HEAD
+<%-- 		<%=session.getAttribute("type")%> --%>
+		<a href="Paiement.jsp"><input type="submit" value="envoyer"/></a>
+		<a href="Recherche.jsp"><input type="submit" value="Faire une autre recherche"/></a><br>
+		
+		
+		<script charset="UTF-8">
+		function changeIdVisite(idVisite) {
+			document.getElementById('idVisite').value = idVisite;
+		}
+		</script>
+=======
 		<a href="Paiement.jsp"><input type="submit" value="Reserver"/></a>
 		<a href="Recherche.jsp"><input type="submit" value="Faire une autre recherche"/></a><br>
+>>>>>>> branch 'dev' of https://github.com/guiguibubu/JavaEE_VisiteGuidee.git
 	</body>
 </html>

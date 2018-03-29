@@ -2,7 +2,6 @@ package fr.eseo.javaee.projet.servlet;
 
 import java.io.IOException;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
 import javax.servlet.RequestDispatcher;
@@ -50,22 +49,13 @@ public class Servlet extends HttpServlet {
 		Reservation reservation = new Reservation();
 		Visite visite = new Visite();
 		Client client = new Client();
-		
+
 		String voyage = request.getParameter("voyage");
 		String[] parts = voyage.split(" - ");
 		visite.setTypeDeVisite(parts[0]);
 		visite.setVille(parts[1]);
-		try {
-			visite.setDateVisite(Convertisseur.asXMLGregorianCalendar(dateFormatter.parse(parts[2])));
-		} catch (ParseException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		try{
-			visite.setPrix(Integer.parseInt(parts[3]));
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		visite.setDateVisite(Convertisseur.asXMLGregorianCalendar(parts[2]));
+		visite.setPrix(Convertisseur.asInt(parts[3]));
 
 		/**
 		 * fonction utilisateur pas encore implantée
@@ -78,7 +68,19 @@ public class Servlet extends HttpServlet {
 		client.setNumTelephone(0);
 		client.setPays("");
 		client.setPrenom("");
-		
+
+		/**
+		 * fonction utilisateur pas encore implantée
+		 */
+		client.setAdresse("");
+		client.setCodePostal(0);
+		client.setIdClient(0);
+		client.setMail("");
+		client.setNom("");
+		client.setNumTelephone(0);
+		client.setPays("");
+		client.setPrenom("");
+
 		/**
 		 * maj de la reservation
 		 */
