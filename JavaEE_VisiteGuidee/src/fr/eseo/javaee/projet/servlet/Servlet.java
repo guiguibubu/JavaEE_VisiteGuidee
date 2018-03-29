@@ -70,18 +70,6 @@ public class Servlet extends HttpServlet {
 		client.setPrenom("");
 
 		/**
-		 * fonction utilisateur pas encore implantée
-		 */
-		client.setAdresse("");
-		client.setCodePostal(0);
-		client.setIdClient(0);
-		client.setMail("");
-		client.setNom("");
-		client.setNumTelephone(0);
-		client.setPays("");
-		client.setPrenom("");
-
-		/**
 		 * maj de la reservation
 		 */
 		reservation.setVisite(visite);

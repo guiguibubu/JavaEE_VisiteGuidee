@@ -8,6 +8,9 @@
 		<jsp:include page="importStyle.jsp"/>	
 	</head>
 	<body>
+		<div style="position: absolute; right: 5%; top: 0px; color: white; font-size: 20px;">
+			Utilisateur : <%= session.getAttribute("nom") %> <%= session.getAttribute("prenom") %>
+		</div>
 		<form method="post" action="ServletAnnulation">
 			Reservation
 				<!--  faire une boucle qui va générer les balises "option"  -->

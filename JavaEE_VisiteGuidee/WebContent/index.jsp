@@ -13,11 +13,12 @@
 					<div class="form-login">
 						<div class="panel panel-primary ">
 							<div class="panel-body">
-								
-								<input type="text" name="login" placeholder="username"/> <br>
-								<input type="password" name="password" placeholder="password"/> <br>
-								<form action="Recherche.jsp">
-									<button type="submit" value="Connexion">connexion</button>
+								<form method="post" action="ServletAuthentification">
+									<input type="text" name="nom" placeholder="nom"/> <br>
+									<input type="text" name="prenom" placeholder="prenom"/> <br>
+									<form action="Recherche.jsp">
+										<button type="submit" value="Connexion">connexion</button>
+									</form>
 								</form>
 							</div>
 						</div>
