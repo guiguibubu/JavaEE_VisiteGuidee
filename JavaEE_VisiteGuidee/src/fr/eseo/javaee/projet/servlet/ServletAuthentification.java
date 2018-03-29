@@ -20,42 +20,62 @@ import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteService;
 @WebServlet("/ServletAuthentification")
 public class ServletAuthentification extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletAuthentification() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	private static final String VUE_CONNEXION = "index.jsp";
+	private static final String VUE_RECHCERCHE = "Recherche.jsp";
+
+	public static final String ATT_PRENOM = "prenom";
+	public static final String ATT_NOM = "nom";
+	public static final String ATT_ID_CLIENT = "idClient";
+
+	public static final String ATT_ERREUR = "erreur";
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ServletAuthentification() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
-		Client client = new Client();
-		String nom = request.getParameter("nom");
-		String prenom = request.getParameter("prenom");
-		
-		client.setNom(nom);
-		client.setPrenom(prenom);
-		/**
-		 * initialisation des services
-		 */
+
 		ReservationVisiteService service = new ReservationVisiteService();
 		ReservationVisiteSEI port = service.getReservationVisitePort();
 
-		/**
-		 * creation de la session
-		 */
-		HttpSession session = request.getSession();
-		session.setAttribute("nom", nom);
-		session.setAttribute("prenom", prenom);
+		String prenom = request.getParameter(ATT_PRENOM);
+		String nom = request.getParameter(ATT_NOM);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("Recherche.jsp");
-		dispatcher.forward(request, response);
+		Client client = port.trouverClient(nom, prenom);
+		System.out.println(client);
+		int idClient = 0;
+		if(client != null) {
+			idClient = client.getIdClient();
+			System.out.println(idClient);
+		}
+
+		HttpSession session = request.getSession();
+		if(idClient == -1) {
+			session.setAttribute(ATT_ERREUR, "La base de données côté serveur n'est pas disponible");
+			RequestDispatcher dispatcher = request.getRequestDispatcher(VUE_CONNEXION);
+			dispatcher.forward(request, response);
+		} else if(idClient == 0) {
+			session.setAttribute(ATT_ERREUR, "Vous n'êtes pas enregistré, vous n'avez pas accès à l'application");
+			RequestDispatcher dispatcher = request.getRequestDispatcher(VUE_CONNEXION);
+			dispatcher.forward(request, response);
+		} else {
+			session.removeAttribute(ATT_ERREUR);
+			session.setAttribute(ATT_PRENOM, prenom);
+			session.setAttribute(ATT_NOM, nom);
+			session.setAttribute(ATT_ID_CLIENT, idClient);
+			RequestDispatcher dispatcher = request.getRequestDispatcher(VUE_RECHCERCHE);
+			dispatcher.forward(request, response);
+		}
 	}
 
 }
