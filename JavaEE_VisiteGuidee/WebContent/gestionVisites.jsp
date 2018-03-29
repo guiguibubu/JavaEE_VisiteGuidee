@@ -6,7 +6,8 @@
 <%@ page import="fr.eseo.javaee.projet.tool.Convertisseur"%>
 <%@ page import="fr.eseo.javaee.projet.servlet.ServletReservation"%>
 <%@ page import="fr.eseo.javaee.projet.servlet.ServletRecherche"%>
-<!-- Création d'un menu déroulant pour des filtres de sélection -->
+<%@ page import="fr.eseo.javaee.projet.servlet.ServletAuthentification" %>
+
 <html>
 <head>
 <meta charset="UTF-8">
@@ -17,7 +18,7 @@
 	<div class="form">
 		<div class="container">
 		<div style="position: absolute; right: 5%; top: 0px; color: white; font-size: 20px;">
-			Utilisateur : <%= session.getAttribute("nom") %> <%= session.getAttribute("prenom") %>
+			Utilisateur : <%= session.getAttribute(ServletAuthentification.ATT_NOM) %> <%= session.getAttribute(ServletAuthentification.ATT_PRENOM) %>
 		</div>
 			<form method="post" id="choixVisite" action="">
 				<h2>Visites</h2>

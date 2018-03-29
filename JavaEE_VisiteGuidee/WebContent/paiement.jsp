@@ -1,4 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ page import="fr.eseo.javaee.projet.servlet.ServletAuthentification" %>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -7,7 +8,7 @@
 </head>
 <body>
 	<div style="position: absolute; right: 5%; top: 0px; color: white; font-size: 20px;">
-		Utilisateur : <%= session.getAttribute("nom") %> <%= session.getAttribute("prenom") %>
+		Utilisateur : <%= session.getAttribute(ServletAuthentification.ATT_NOM) %> <%= session.getAttribute(ServletAuthentification.ATT_PRENOM) %>
 	</div>
 	Paiement
 	<fieldset>
