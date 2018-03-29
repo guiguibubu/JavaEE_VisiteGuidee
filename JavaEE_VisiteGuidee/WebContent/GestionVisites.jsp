@@ -84,8 +84,7 @@
 			document.getElementById('idVisite').value = idVisite;
 			console.log(document.getElementById('idVisite'));
 			document.getElementById('choixVisite').action = "ServletReservation";
-// 			document.getElementById('choixVisite').submit();
 		}
-		</script>
+	</script>
 </body>
 </html>

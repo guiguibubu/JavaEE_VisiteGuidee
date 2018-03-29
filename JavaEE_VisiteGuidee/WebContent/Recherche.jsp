@@ -12,19 +12,19 @@
 			Utilisateur : <%= session.getAttribute("nom") %> <%= session.getAttribute("prenom") %>
 		</div>
 		<div class="recherche">
-				<div class="form">				
-						<form method="post" action="ServletRecherche">
+				<div class="form">
+							<form method="post" action="ServletRecherche">
 								<input type="text" name="typeDeVisite" placeholder="Type de visite"/> <br>
 								<input type="text" name="ville" placeholder="Ville"/> <br>
 								<input type="date" name="dateVisite" placeholder="Date minimum"/><br>
 								<input type="number" name="prix" min="0" pattern="[0-9]*[.]?[0-9]{1,2}" placeholder="Prix"/> <br><br>
-									
+								
 								<form action="Recherche.jsp">
 									<button type="submit" value="Envoyer">Recherche</button>
 								</form>
 								<br>	
 								<form action="MesReservations.jsp">
-									<button type="submit" value="Reservations">Mer réservations</button>
+									<button type="submit" value="Reservations">Mes réservations</button>
 								</form>
 						</form>
 					</div>
