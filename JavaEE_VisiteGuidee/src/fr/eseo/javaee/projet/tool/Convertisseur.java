@@ -22,6 +22,10 @@ public class Convertisseur {
 		return calendar.toGregorianCalendar().getTime();
 	}
 
+	public static String asStringForView(XMLGregorianCalendar calendar) {
+		return dateTimeFormatter.format(asUtilDate(calendar));
+	}
+
 	public static XMLGregorianCalendar asXMLGregorianCalendar(Date date) {
 		GregorianCalendar c = new GregorianCalendar();
 		c.setTime(date);

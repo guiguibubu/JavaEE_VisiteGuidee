@@ -8,6 +8,9 @@
 		<jsp:include page="importStyle.jsp"/>
 	</head>
 	<body>
+		<div style="position: absolute; right: 5%; top: 0px; color: white; font-size: 20px;">
+			Utilisateur : <%= session.getAttribute("nom") %> <%= session.getAttribute("prenom") %>
+		</div>
 		<div class="recherche">
 				<div class="form">				
 						<form method="post" action="ServletRecherche">
@@ -21,7 +24,7 @@
 								</form>
 								<br>	
 								<form action="MesReservations.jsp">
-									<button type="submit" value="Reservations">Reservations</button>
+									<button type="submit" value="Reservations">Mer réservations</button>
 								</form>
 						</form>
 					</div>

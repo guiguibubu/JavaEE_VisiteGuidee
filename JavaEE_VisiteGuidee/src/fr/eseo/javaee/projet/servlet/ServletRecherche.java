@@ -24,10 +24,9 @@ import fr.eseo.javaee.projet.visiteguidee.Visite;
 public class ServletRecherche extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	//	private static final String DATE_FORMATTER_STRING = "yyyy-MM-dd";
-	//	private static final String DATE_TIME_FORMATTER_STRING = "yyyy-MM-dd HH:mm:ss";
-	//	private static final DateFormat dateFormatter = new SimpleDateFormat(DATE_FORMATTER_STRING);
-	//	private static final DateFormat dateTimeFormatter = new SimpleDateFormat(DATE_TIME_FORMATTER_STRING);
+	private static final String VUE_RECHERCHE = "Recherche.jsp";
+
+	public static final String ATT_VISITES = "visites";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -71,7 +70,6 @@ public class ServletRecherche extends HttpServlet {
 		 */
 		HttpSession session = request.getSession();
 		session.setAttribute("visites", visites);
-		session.setAttribute("taille", nbr);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("GestionVisites.jsp");
 		dispatcher.forward(request, response);
