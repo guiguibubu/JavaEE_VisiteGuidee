@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eseo.javaee.projet.tool.Convertisseur;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteSEI;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteService;
 
@@ -19,18 +20,22 @@ import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteService;
 @WebServlet("/ServletAnnulation")
 public class ServletAnnulation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletAnnulation() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	public static final String VUE_MES_RESERVATION = "MesReservations.jsp";
+
+	public static final String ATT_CODE_RESERVATION = "codeReservation";
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ServletAnnulation() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
@@ -41,21 +46,16 @@ public class ServletAnnulation extends HttpServlet {
 		ReservationVisiteSEI port = service.getReservationVisitePort();
 
 		boolean annulation = false;
-		
-		try {
-			annulation = port.annulerVisite(Integer.parseInt(request.getParameter("code")));
-		} catch (Exception e) {
-			// TODO G�rer l'exception pour la transmettre � l'IHM
-			e.printStackTrace();
-		}
+
+		annulation = port.annulerVisite(Convertisseur.asInt(request.getParameter(ATT_CODE_RESERVATION)));
 
 		/**
-		 * creation de la session
+		 * récupération de la session
 		 */
 		HttpSession session = request.getSession();
 		session.setAttribute("annulation", annulation);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("MesReservations.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher(VUE_MES_RESERVATION);
 		dispatcher.forward(request, response);
 	}
 

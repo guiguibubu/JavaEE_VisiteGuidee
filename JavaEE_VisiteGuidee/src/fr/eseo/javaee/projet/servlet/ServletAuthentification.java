@@ -22,7 +22,7 @@ public class ServletAuthentification extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private static final String VUE_CONNEXION = "index.jsp";
-	private static final String VUE_RECHCERCHE = "Recherche.jsp";
+	private static final String VUE_RECHERCHE = "Recherche.jsp";
 
 	public static final String ATT_PRENOM = "prenom";
 	public static final String ATT_NOM = "nom";
@@ -52,13 +52,14 @@ public class ServletAuthentification extends HttpServlet {
 		String nom = request.getParameter(ATT_NOM);
 
 		Client client = port.trouverClient(nom, prenom);
-		System.out.println(client);
 		int idClient = 0;
 		if(client != null) {
 			idClient = client.getIdClient();
-			System.out.println(idClient);
 		}
 
+		/*
+		 * Récupération de la session
+		 */
 		HttpSession session = request.getSession();
 		if(idClient == -1) {
 			session.setAttribute(ATT_ERREUR, "La base de données côté serveur n'est pas disponible");
@@ -73,7 +74,7 @@ public class ServletAuthentification extends HttpServlet {
 			session.setAttribute(ATT_PRENOM, prenom);
 			session.setAttribute(ATT_NOM, nom);
 			session.setAttribute(ATT_ID_CLIENT, idClient);
-			RequestDispatcher dispatcher = request.getRequestDispatcher(VUE_RECHCERCHE);
+			RequestDispatcher dispatcher = request.getRequestDispatcher(VUE_RECHERCHE);
 			dispatcher.forward(request, response);
 		}
 	}

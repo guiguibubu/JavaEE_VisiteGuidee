@@ -24,8 +24,12 @@ import fr.eseo.javaee.projet.visiteguidee.Visite;
 public class ServletRecherche extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private static final String VUE_RECHERCHE = "Recherche.jsp";
+	private static final String VUE_RESULTAT_RECHERCHE = "GestionVisites.jsp";
 
+	public static final String ATT_TYPE = "typeVisite";
+	public static final String ATT_VILLE = "ville";
+	public static final String ATT_DATE_VISITE = "dateVisite";
+	public static final String ATT_PRIX = "prix";
 	public static final String ATT_VISITES = "visites";
 
 	/**
@@ -46,10 +50,10 @@ public class ServletRecherche extends HttpServlet {
 		 * initialisation des objets
 		 */
 		Visite visite = new Visite();
-		String typeVisite = request.getParameter("typeDeVisite");
-		String ville = request.getParameter("ville");
-		String dateTime = request.getParameter("dateVisite");
-		String prix = request.getParameter("prix");
+		String typeVisite = request.getParameter(ATT_TYPE);
+		String ville = request.getParameter(ATT_VILLE);
+		String dateTime = request.getParameter(ATT_DATE_VISITE);
+		String prix = request.getParameter(ATT_PRIX);
 		visite.setTypeDeVisite(typeVisite);
 		visite.setVille(ville);
 		visite.setDateVisite(Convertisseur.asXMLGregorianCalendar(dateTime));
@@ -66,12 +70,12 @@ public class ServletRecherche extends HttpServlet {
 		int nbr = visites.size();
 
 		/**
-		 * creation de la session
+		 * récupération de la session
 		 */
 		HttpSession session = request.getSession();
-		session.setAttribute("visites", visites);
+		session.setAttribute(ATT_VISITES, visites);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("GestionVisites.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher(VUE_RESULTAT_RECHERCHE);
 		dispatcher.forward(request, response);
 	}
 }
