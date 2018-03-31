@@ -4,9 +4,7 @@
 <%@ page import="java.util.Date"%>
 <%@ page import="fr.eseo.javaee.projet.visiteguidee.Visite"%>
 <%@ page import="fr.eseo.javaee.projet.tool.Convertisseur"%>
-<%@ page import="fr.eseo.javaee.projet.servlet.ServletReservation"%>
-<%@ page import="fr.eseo.javaee.projet.servlet.ServletRecherche"%>
-<%@ page import="fr.eseo.javaee.projet.servlet.ServletAuthentification" %>
+<%@ page import="fr.eseo.javaee.projet.servlet.ChampSession"%>
 
 <html>
 <head>
@@ -18,14 +16,14 @@
 	<div class="form">
 		<div class="container">
 		<div style="position: absolute; right: 5%; top: 0px; color: white; font-size: 20px;">
-			Utilisateur : <%= session.getAttribute(ServletAuthentification.ATT_NOM) %> <%= session.getAttribute(ServletAuthentification.ATT_PRENOM) %>
+			Utilisateur : <%= session.getAttribute(ChampSession.ATT_NOM) %> <%= session.getAttribute(ChampSession.ATT_PRENOM) %>
 		</div>
 			<form method="post" id="choixVisite" action="">
 				<h2>Visites</h2>
 				<br> 
-				<input type="hidden" name=<%=ServletReservation.ATT_ID_VISITE%> id=<%=ServletReservation.ATT_ID_VISITE%> value="0">
+				<input type="hidden" name=<%=ChampSession.ATT_ID_VISITE%> id=<%=ChampSession.ATT_ID_VISITE%> value="0">
 				<%
-					List<Visite> listVisite = (List<Visite>) session.getAttribute(ServletRecherche.ATT_VISITES);
+					List<Visite> listVisite = (List<Visite>) session.getAttribute(ChampSession.ATT_LISTE_VISITES);
 					int nbVisite = listVisite.size();
 				%>
 				<%
@@ -69,9 +67,9 @@
 			</form>
 			<!-- 						<a href="Paiement.jsp"><input type="submit" value="envoyer"/></a> -->
 			<form method="post" id="formulaireNouvelleRecherche" action="Servlet">
-				<input type="hidden" id=<%=ServletReservation.ATT_NEW_SEARCH%>
-					name=<%=ServletReservation.ATT_NEW_SEARCH%>
-					value=<%=ServletReservation.ATT_NEW_SEARCH%> />
+				<input type="hidden" id=<%=ChampSession.ATT_NOUVELLE_RECHERCHE%>
+					name=<%=ChampSession.ATT_NOUVELLE_RECHERCHE%>
+					value=<%=ChampSession.ATT_NOUVELLE_RECHERCHE%> />
 				<button type="submit" class="btn btn-primary">
 					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
 					Faire une autre recherche
@@ -84,7 +82,7 @@
 		function changeIdVisite(idVisite) {
 			document.getElementById('idVisite').value = idVisite;
 			console.log(document.getElementById('idVisite'));
-			document.getElementById('choixVisite').action = "ServletReservation";
+			document.getElementById('choixVisite').action = "ChampSession";
 		}
 	</script>
 </body>

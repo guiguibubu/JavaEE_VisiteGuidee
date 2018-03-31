@@ -21,14 +21,14 @@ import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteService;
 public class ServletAuthentification extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private static final String VUE_CONNEXION = "index.jsp";
-	private static final String VUE_RECHERCHE = "Recherche.jsp";
-
-	public static final String ATT_PRENOM = "prenom";
-	public static final String ATT_NOM = "nom";
-	public static final String ATT_ID_CLIENT = "idClient";
-
-	public static final String ATT_ERREUR = "erreur";
+	//	private static final String VUE_CONNEXION = "index.jsp";
+	//	private static final String VUE_RECHERCHE = "Recherche.jsp";
+	//
+	//	public static final String ATT_PRENOM = "prenom";
+	//	public static final String ATT_NOM = "nom";
+	//	public static final String ATT_ID_CLIENT = "idClient";
+	//
+	//	public static final String ATT_ERREUR = "erreur";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -48,8 +48,8 @@ public class ServletAuthentification extends HttpServlet {
 		ReservationVisiteService service = new ReservationVisiteService();
 		ReservationVisiteSEI port = service.getReservationVisitePort();
 
-		String prenom = request.getParameter(ATT_PRENOM);
-		String nom = request.getParameter(ATT_NOM);
+		String prenom = request.getParameter(ChampSession.ATT_PRENOM);
+		String nom = request.getParameter(ChampSession.ATT_NOM);
 
 		Client client = port.trouverClient(nom, prenom);
 		int idClient = 0;
@@ -62,19 +62,19 @@ public class ServletAuthentification extends HttpServlet {
 		 */
 		HttpSession session = request.getSession();
 		if(idClient == -1) {
-			session.setAttribute(ATT_ERREUR, "La base de données côté serveur n'est pas disponible");
-			RequestDispatcher dispatcher = request.getRequestDispatcher(VUE_CONNEXION);
+			session.setAttribute(ChampSession.ATT_ERREUR, "La base de données côté serveur n'est pas disponible");
+			RequestDispatcher dispatcher = request.getRequestDispatcher(ChampSession.VUE_CONNEXION);
 			dispatcher.forward(request, response);
 		} else if(idClient == 0) {
-			session.setAttribute(ATT_ERREUR, "Vous n'êtes pas enregistré, vous n'avez pas accès à l'application");
-			RequestDispatcher dispatcher = request.getRequestDispatcher(VUE_CONNEXION);
+			session.setAttribute(ChampSession.ATT_ERREUR, "Vous n'êtes pas enregistré, vous n'avez pas accès à l'application");
+			RequestDispatcher dispatcher = request.getRequestDispatcher(ChampSession.VUE_CONNEXION);
 			dispatcher.forward(request, response);
 		} else {
-			session.removeAttribute(ATT_ERREUR);
-			session.setAttribute(ATT_PRENOM, prenom);
-			session.setAttribute(ATT_NOM, nom);
-			session.setAttribute(ATT_ID_CLIENT, idClient);
-			RequestDispatcher dispatcher = request.getRequestDispatcher(VUE_RECHERCHE);
+			session.removeAttribute(ChampSession.ATT_ERREUR);
+			session.setAttribute(ChampSession.ATT_PRENOM, prenom);
+			session.setAttribute(ChampSession.ATT_NOM, nom);
+			session.setAttribute(ChampSession.ATT_ID_CLIENT, idClient);
+			RequestDispatcher dispatcher = request.getRequestDispatcher(ChampSession.VUE_RECHERCHE);
 			dispatcher.forward(request, response);
 		}
 	}

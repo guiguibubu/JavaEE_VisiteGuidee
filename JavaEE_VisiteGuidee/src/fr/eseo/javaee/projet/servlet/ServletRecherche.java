@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eseo.javaee.projet.tool.Convertisseur;
+import fr.eseo.javaee.projet.tool.ServletTools;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteSEI;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteService;
 import fr.eseo.javaee.projet.visiteguidee.Visite;
@@ -24,13 +25,13 @@ import fr.eseo.javaee.projet.visiteguidee.Visite;
 public class ServletRecherche extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private static final String VUE_RESULTAT_RECHERCHE = "GestionVisites.jsp";
-
-	public static final String ATT_TYPE = "typeVisite";
-	public static final String ATT_VILLE = "ville";
-	public static final String ATT_DATE_VISITE = "dateVisite";
-	public static final String ATT_PRIX = "prix";
-	public static final String ATT_VISITES = "visites";
+	//	private static final String VUE_RESULTAT_RECHERCHE = "GestionVisites.jsp";
+	//
+	//	public static final String ATT_TYPE = "typeVisite";
+	//	public static final String ATT_VILLE = "ville";
+	//	public static final String ATT_DATE_VISITE = "dateVisite";
+	//	public static final String ATT_PRIX = "prix";
+	//	public static final String ATT_VISITES = "visites";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -46,14 +47,15 @@ public class ServletRecherche extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		ServletTools.verifConnexionClient(request, response);
 		/**
 		 * initialisation des objets
 		 */
 		Visite visite = new Visite();
-		String typeVisite = request.getParameter(ATT_TYPE);
-		String ville = request.getParameter(ATT_VILLE);
-		String dateTime = request.getParameter(ATT_DATE_VISITE);
-		String prix = request.getParameter(ATT_PRIX);
+		String typeVisite = request.getParameter(ChampSession.ATT_TYPE_VISITE);
+		String ville = request.getParameter(ChampSession.ATT_VILLE);
+		String dateTime = request.getParameter(ChampSession.ATT_DATE_VISITE);
+		String prix = request.getParameter(ChampSession.ATT_PRIX);
 		visite.setTypeDeVisite(typeVisite);
 		visite.setVille(ville);
 		visite.setDateVisite(Convertisseur.asXMLGregorianCalendar(dateTime));
@@ -67,15 +69,13 @@ public class ServletRecherche extends HttpServlet {
 
 		List<Visite> visites = new ArrayList<>();
 		visites = port.trouverVisite(visite);
-		int nbr = visites.size();
-
 		/**
 		 * récupération de la session
 		 */
 		HttpSession session = request.getSession();
-		session.setAttribute(ATT_VISITES, visites);
+		session.setAttribute(ChampSession.ATT_LISTE_VISITES, visites);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher(VUE_RESULTAT_RECHERCHE);
+		RequestDispatcher dispatcher = request.getRequestDispatcher(ChampSession.VUE_RESULTAT_RECHERCHE);
 		dispatcher.forward(request, response);
 	}
 }

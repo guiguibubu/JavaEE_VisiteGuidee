@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eseo.javaee.projet.tool.Convertisseur;
+import fr.eseo.javaee.projet.tool.ServletTools;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteSEI;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteService;
 
@@ -21,9 +22,9 @@ import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteService;
 public class ServletAnnulation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	public static final String VUE_MES_RESERVATION = "MesReservations.jsp";
-
-	public static final String ATT_CODE_RESERVATION = "codeReservation";
+	//	public static final String VUE_MES_RESERVATION = "MesReservations.jsp";
+	//
+	//	public static final String ATT_CODE_RESERVATION = "codeReservation";
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -37,8 +38,8 @@ public class ServletAnnulation extends HttpServlet {
 	 */
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 
+		ServletTools.verifConnexionClient(request, response);
 		/**
 		 * initialisation des services
 		 */
@@ -47,15 +48,19 @@ public class ServletAnnulation extends HttpServlet {
 
 		boolean annulation = false;
 
-		annulation = port.annulerVisite(Convertisseur.asInt(request.getParameter(ATT_CODE_RESERVATION)));
+		annulation = port.annulerVisite(Convertisseur.asInt(request.getParameter(ChampSession.ATT_ID_RESERVATION)));
 
 		/**
 		 * récupération de la session
 		 */
 		HttpSession session = request.getSession();
-		session.setAttribute("annulation", annulation);
+		if(annulation) {
+			session.setAttribute(ChampSession.ATT_SUCCES, "Annulation réussie");
+		} else {
+			session.setAttribute(ChampSession.ATT_ERREUR, "Annulation impossible");
+		}
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher(VUE_MES_RESERVATION);
+		RequestDispatcher dispatcher = request.getRequestDispatcher(ChampSession.VUE_MES_RESERVATION);
 		dispatcher.forward(request, response);
 	}
 
