@@ -32,6 +32,8 @@ public class ObjectFactory {
     private final static QName _ReserverVisiteResponse_QNAME = new QName("http://visiteguidee.projet.javaee.eseo.fr/", "reserverVisiteResponse");
     private final static QName _TrouverClient_QNAME = new QName("http://visiteguidee.projet.javaee.eseo.fr/", "trouverClient");
     private final static QName _TrouverClientResponse_QNAME = new QName("http://visiteguidee.projet.javaee.eseo.fr/", "trouverClientResponse");
+    private final static QName _TrouverReservationByIdClient_QNAME = new QName("http://visiteguidee.projet.javaee.eseo.fr/", "trouverReservationByIdClient");
+    private final static QName _TrouverReservationByIdClientResponse_QNAME = new QName("http://visiteguidee.projet.javaee.eseo.fr/", "trouverReservationByIdClientResponse");
     private final static QName _TrouverVisite_QNAME = new QName("http://visiteguidee.projet.javaee.eseo.fr/", "trouverVisite");
     private final static QName _TrouverVisiteResponse_QNAME = new QName("http://visiteguidee.projet.javaee.eseo.fr/", "trouverVisiteResponse");
 
@@ -107,6 +109,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link TrouverReservationByIdClient }
+     * 
+     */
+    public TrouverReservationByIdClient createTrouverReservationByIdClient() {
+        return new TrouverReservationByIdClient();
+    }
+
+    /**
+     * Create an instance of {@link TrouverReservationByIdClientResponse }
+     * 
+     */
+    public TrouverReservationByIdClientResponse createTrouverReservationByIdClientResponse() {
+        return new TrouverReservationByIdClientResponse();
+    }
+
+    /**
      * Create an instance of {@link TrouverVisite }
      * 
      */
@@ -123,6 +141,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Visite }
+     * 
+     */
+    public Visite createVisite() {
+        return new Visite();
+    }
+
+    /**
      * Create an instance of {@link Reservation }
      * 
      */
@@ -136,14 +162,6 @@ public class ObjectFactory {
      */
     public Client createClient() {
         return new Client();
-    }
-
-    /**
-     * Create an instance of {@link Visite }
-     * 
-     */
-    public Visite createVisite() {
-        return new Visite();
     }
 
     /**
@@ -216,6 +234,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://visiteguidee.projet.javaee.eseo.fr/", name = "trouverClientResponse")
     public JAXBElement<TrouverClientResponse> createTrouverClientResponse(TrouverClientResponse value) {
         return new JAXBElement<TrouverClientResponse>(_TrouverClientResponse_QNAME, TrouverClientResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link TrouverReservationByIdClient }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://visiteguidee.projet.javaee.eseo.fr/", name = "trouverReservationByIdClient")
+    public JAXBElement<TrouverReservationByIdClient> createTrouverReservationByIdClient(TrouverReservationByIdClient value) {
+        return new JAXBElement<TrouverReservationByIdClient>(_TrouverReservationByIdClient_QNAME, TrouverReservationByIdClient.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link TrouverReservationByIdClientResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://visiteguidee.projet.javaee.eseo.fr/", name = "trouverReservationByIdClientResponse")
+    public JAXBElement<TrouverReservationByIdClientResponse> createTrouverReservationByIdClientResponse(TrouverReservationByIdClientResponse value) {
+        return new JAXBElement<TrouverReservationByIdClientResponse>(_TrouverReservationByIdClientResponse_QNAME, TrouverReservationByIdClientResponse.class, null, value);
     }
 
     /**

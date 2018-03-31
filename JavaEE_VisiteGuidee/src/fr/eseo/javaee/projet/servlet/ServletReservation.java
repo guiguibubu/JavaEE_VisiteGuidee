@@ -70,6 +70,7 @@ public class ServletReservation extends HttpServlet {
 
 		Visite visite = new Visite();
 		visite.setCodeVisite(Convertisseur.asInt(request.getParameter(ATT_ID_VISITE).toString()));
+		// TODO récupérer élément de la visite da,s la liste de visites de la session
 
 		Reservation reservation = new Reservation();
 		reservation.setVisite(visite); //  visite "vide" dont l'id correspond à celui de la visite choisie
