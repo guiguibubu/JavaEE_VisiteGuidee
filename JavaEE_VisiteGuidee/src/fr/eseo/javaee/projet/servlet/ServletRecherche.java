@@ -12,9 +12,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eseo.javaee.projet.tool.Convertisseur;
+import fr.eseo.javaee.projet.tool.ServletTools;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteSEI;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteService;
-import fr.eseo.javaee.projet.visiteguidee.SQLException_Exception;
 import fr.eseo.javaee.projet.visiteguidee.Visite;
 
 /**
@@ -23,6 +24,14 @@ import fr.eseo.javaee.projet.visiteguidee.Visite;
 @WebServlet("/ServletRecherche")
 public class ServletRecherche extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+
+	//	private static final String VUE_RESULTAT_RECHERCHE = "GestionVisites.jsp";
+	//
+	//	public static final String ATT_TYPE = "typeVisite";
+	//	public static final String ATT_VILLE = "ville";
+	//	public static final String ATT_DATE_VISITE = "dateVisite";
+	//	public static final String ATT_PRIX = "prix";
+	//	public static final String ATT_VISITES = "visites";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -37,16 +46,20 @@ public class ServletRecherche extends HttpServlet {
 	 */
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 
+		ServletTools.verifConnexionClient(request, response);
 		/**
 		 * initialisation des objets
 		 */
 		Visite visite = new Visite();
-		visite.setTypeDeVisite(request.getParameter("typeDeVisite"));
-		visite.setVille(request.getParameter("ville"));
-		//visite.setDateVisite(request.getParameter("dateVisite"));
-		visite.setPrix(Integer.parseInt(request.getParameter("dateVisite")));
+		String typeVisite = request.getParameter(ChampSession.ATT_TYPE_VISITE);
+		String ville = request.getParameter(ChampSession.ATT_VILLE);
+		String dateTime = request.getParameter(ChampSession.ATT_DATE_VISITE);
+		String prix = request.getParameter(ChampSession.ATT_PRIX);
+		visite.setTypeDeVisite(typeVisite);
+		visite.setVille(ville);
+		visite.setDateVisite(Convertisseur.asXMLGregorianCalendar(dateTime));
+		visite.setPrix(Convertisseur.asInt(prix));
 
 		/**
 		 * initialisation des services
@@ -54,24 +67,16 @@ public class ServletRecherche extends HttpServlet {
 		ReservationVisiteService service = new ReservationVisiteService();
 		ReservationVisiteSEI port = service.getReservationVisitePort();
 
-
-		List<Visite> visites = new ArrayList<Visite>();
-		try {
-			visites = port.trouverVisite(visite);
-		} catch (SQLException_Exception e) {
-			// TODO GÈrer l'exception pour la transmettre ‡ l'IHM
-			e.printStackTrace();
-		}
-		int nbr = visites.size();
+		List<Visite> visites = new ArrayList<>();
+		visites = port.trouverVisite(visite);
 
 		/**
-		 * creation de la session
+		 * r√©cup√©ration de la session
 		 */
 		HttpSession session = request.getSession();
-		session.setAttribute("visites", visites);
-		session.setAttribute("taille", nbr);
+		session.setAttribute(ChampSession.ATT_LISTE_VISITES, visites);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("GestionVisites.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher(ChampSession.VUE_RESULTAT_RECHERCHE);
 		dispatcher.forward(request, response);
 	}
 }
