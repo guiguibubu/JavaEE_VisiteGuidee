@@ -1,6 +1,9 @@
 package fr.eseo.javaee.projet.servlet;
 
 public class ChampSession {
+
+	private ChampSession(){};
+
 	//IHM
 	public static final String VUE_CONNEXION = "index.jsp";
 	public static final String VUE_RECHERCHE = "recherche.jsp";

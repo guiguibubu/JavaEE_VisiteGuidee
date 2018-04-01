@@ -18,6 +18,8 @@ public class Convertisseur {
 	private static final DateFormat dateFormatter = new SimpleDateFormat(DATE_FORMATTER_STRING);
 	private static final DateFormat dateTimeFormatter = new SimpleDateFormat(DATE_TIME_FORMATTER_STRING);
 
+	private Convertisseur() {}
+
 	public static Date asUtilDate(XMLGregorianCalendar calendar) {
 		return calendar.toGregorianCalendar().getTime();
 	}
@@ -41,7 +43,6 @@ public class Convertisseur {
 
 	public static XMLGregorianCalendar asXMLGregorianCalendar(String dateText) {
 		Date date = null;
-		XMLGregorianCalendar xmlDate = null;
 		try {
 			date = dateFormatter.parse(dateText);
 		} catch (ParseException e1) {

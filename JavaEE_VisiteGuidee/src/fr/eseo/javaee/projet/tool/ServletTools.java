@@ -17,6 +17,8 @@ import fr.eseo.javaee.projet.visiteguidee.Visite;
 
 public class ServletTools {
 
+	private ServletTools() {};
+
 	public static void verifConnexionClient(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		boolean idClientLogged = false;

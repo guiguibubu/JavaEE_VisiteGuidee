@@ -1,7 +1,6 @@
 package fr.eseo.javaee.projet.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -25,20 +24,11 @@ import fr.eseo.javaee.projet.visiteguidee.Visite;
 public class ServletRecherche extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	//	private static final String VUE_RESULTAT_RECHERCHE = "GestionVisites.jsp";
-	//
-	//	public static final String ATT_TYPE = "typeVisite";
-	//	public static final String ATT_VILLE = "ville";
-	//	public static final String ATT_DATE_VISITE = "dateVisite";
-	//	public static final String ATT_PRIX = "prix";
-	//	public static final String ATT_VISITES = "visites";
-
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public ServletRecherche() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -67,8 +57,7 @@ public class ServletRecherche extends HttpServlet {
 		ReservationVisiteService service = new ReservationVisiteService();
 		ReservationVisiteSEI port = service.getReservationVisitePort();
 
-		List<Visite> visites = new ArrayList<>();
-		visites = port.trouverVisite(visite);
+		List<Visite> visites = port.trouverVisite(visite);
 
 		/**
 		 * récupération de la session
