@@ -69,6 +69,7 @@ public class ServletRecherche extends HttpServlet {
 
 		List<Visite> visites = new ArrayList<>();
 		visites = port.trouverVisite(visite);
+
 		/**
 		 * récupération de la session
 		 */

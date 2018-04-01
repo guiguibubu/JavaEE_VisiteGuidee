@@ -14,7 +14,7 @@
 				<div class="form-login">
 					<div class="panel panel-primary ">
 						<div class="panel-body">
-							<form action="ServletIndex">
+							<form action="ServletAuthentification">
 								<input type="text" name=<%=ChampSession.ATT_PRENOM%> placeholder="Prénom" pattern="[a-zA-Z]+" title="Que des lettres minuscules/majuscules" required="true" autocomplete="off"/> <br>
 								<input type="text" name=<%=ChampSession.ATT_NOM%> placeholder="Nom" pattern="[a-zA-Z]+" title="Que des lettres minuscules/majuscules" required="true" autocomplete="off"/> <br>
 								<button type="submit" value="Connexion">connexion</button>

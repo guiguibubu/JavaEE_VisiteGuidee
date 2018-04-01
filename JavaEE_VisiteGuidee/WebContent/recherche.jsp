@@ -9,9 +9,7 @@
 		<jsp:include page="importStyle.jsp"/>
 	</head>
 	<body>
-		<div style="position: absolute; right: 5%; top: 0px; color: white; font-size: 20px;">
-			Utilisateur : <%= session.getAttribute(ChampSession.ATT_NOM) %> <%= session.getAttribute(ChampSession.ATT_PRENOM) %>
-		</div>
+		<jsp:include page="utilisateur.jsp" />
 		<div class="recherche">
 				<div class="form">
 							<form method="post" action="ServletRecherche">
@@ -19,14 +17,12 @@
 								<input type="text" name=<%=ChampSession.ATT_VILLE %> placeholder="Ville"> <br>
 								<input type="date" name=<%=ChampSession.ATT_DATE_VISITE %> placeholder="Jour dela visite"><br>
 								<input type="number" name=<%=ChampSession.ATT_PRIX %> min="0" pattern="[0-9]*[.]?[0-9]{1,2}" placeholder="Prix"> <br><br>
-								
-<!-- 								<form action="Recherche.jsp"> -->
-									<button type="submit" value="Envoyer">Recherche</button>
-<!-- 								</form> -->
-								<br>	
-								<form action="MesReservations.jsp">
-									<button type="submit" value="Reservations">Mes réservations</button>
-								</form>
+									
+								<button type="submit" value="Envoyer">Recherche</button>
+						</form>
+						<br>	
+						<form method="post" action="ServletMesReservations">
+							<button type="submit" value="Reservations">Mes réservations</button>
 						</form>
 					</div>
 				</div>

@@ -9,6 +9,8 @@ public class ChampSession {
 	public static final String VUE_RESULTAT_RECHERCHE = "gestionVisites.jsp";
 	//Action
 	public static final String ATT_ACTION = "action";
+	public static final String ATT_SUCCES_ANNULATION = "succesAnnulation";
+	public static final String ATT_SUCCES_RESERVATION = "succesReservation";
 	public static final String ATT_NOUVELLE_RECHERCHE = "newSearch";
 	//Messages
 	public static final String ATT_ERREUR = "erreur";

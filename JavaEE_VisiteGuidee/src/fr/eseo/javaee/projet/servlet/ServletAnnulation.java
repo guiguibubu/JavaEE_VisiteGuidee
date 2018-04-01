@@ -22,15 +22,11 @@ import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteService;
 public class ServletAnnulation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	//	public static final String VUE_MES_RESERVATION = "MesReservations.jsp";
-	//
-	//	public static final String ATT_CODE_RESERVATION = "codeReservation";
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public ServletAnnulation() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -56,11 +52,13 @@ public class ServletAnnulation extends HttpServlet {
 		HttpSession session = request.getSession();
 		if(annulation) {
 			session.setAttribute(ChampSession.ATT_SUCCES, "Annulation réussie");
+			// On charge en session les reservations du client
+			ServletTools.chargementReservation(request);
 		} else {
 			session.setAttribute(ChampSession.ATT_ERREUR, "Annulation impossible");
 		}
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher(ChampSession.VUE_MES_RESERVATION);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("ServletMesReservations");
 		dispatcher.forward(request, response);
 	}
 

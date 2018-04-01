@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eseo.javaee.projet.tool.ServletTools;
 import fr.eseo.javaee.projet.visiteguidee.Client;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteSEI;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteService;
@@ -20,15 +21,6 @@ import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteService;
 @WebServlet("/ServletAuthentification")
 public class ServletAuthentification extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	//	private static final String VUE_CONNEXION = "index.jsp";
-	//	private static final String VUE_RECHERCHE = "Recherche.jsp";
-	//
-	//	public static final String ATT_PRENOM = "prenom";
-	//	public static final String ATT_NOM = "nom";
-	//	public static final String ATT_ID_CLIENT = "idClient";
-	//
-	//	public static final String ATT_ERREUR = "erreur";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -55,6 +47,8 @@ public class ServletAuthentification extends HttpServlet {
 		int idClient = 0;
 		if(client != null) {
 			idClient = client.getIdClient();
+			nom = client.getNom();
+			prenom = client.getPrenom();
 		}
 
 		/*
@@ -70,10 +64,13 @@ public class ServletAuthentification extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(ChampSession.VUE_CONNEXION);
 			dispatcher.forward(request, response);
 		} else {
-			session.removeAttribute(ChampSession.ATT_ERREUR);
+			// On charge en session les informations du client
 			session.setAttribute(ChampSession.ATT_PRENOM, prenom);
 			session.setAttribute(ChampSession.ATT_NOM, nom);
 			session.setAttribute(ChampSession.ATT_ID_CLIENT, idClient);
+			// On charge en session les reservations du client
+			ServletTools.chargementReservation(request);
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher(ChampSession.VUE_RECHERCHE);
 			dispatcher.forward(request, response);
 		}

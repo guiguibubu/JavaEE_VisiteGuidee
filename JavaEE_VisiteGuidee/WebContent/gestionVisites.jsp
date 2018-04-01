@@ -3,9 +3,10 @@
 <%@ page import="java.util.List"%>
 <%@ page import="java.util.Date"%>
 <%@ page import="fr.eseo.javaee.projet.visiteguidee.Visite"%>
+<%@ page import="fr.eseo.javaee.projet.visiteguidee.Reservation"%>
 <%@ page import="fr.eseo.javaee.projet.tool.Convertisseur"%>
 <%@ page import="fr.eseo.javaee.projet.servlet.ChampSession"%>
-
+<%@ page import="fr.eseo.javaee.projet.tool.ServletTools"%>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -13,27 +14,57 @@
 <jsp:include page="importStyle.jsp" />
 </head>
 <body>
+	<jsp:include page="utilisateur.jsp" />
 	<div class="form">
 		<div class="container">
-		<div style="position: absolute; right: 5%; top: 0px; color: white; font-size: 20px;">
-			Utilisateur : <%= session.getAttribute(ChampSession.ATT_NOM) %> <%= session.getAttribute(ChampSession.ATT_PRENOM) %>
-		</div>
 			<form method="post" id="choixVisite" action="">
 				<h2>Visites</h2>
-				<br> 
-				<input type="hidden" name=<%=ChampSession.ATT_ID_VISITE%> id=<%=ChampSession.ATT_ID_VISITE%> value="0">
+				<!-- Message -->
 				<%
+					String messageSucces = (String) session.getAttribute(ChampSession.ATT_SUCCES);
+					String messageEchec = (String) session.getAttribute(ChampSession.ATT_ERREUR);
+				%>
+				<%
+					if (null != messageSucces) {
+				%>
+				<%
+					session.removeAttribute(ChampSession.ATT_SUCCES);
+				%>
+				<div
+					style="background-color: green; padding-top: 5px; padding-bottom: 5px;">
+					<%=messageSucces%>
+					Votre code de réservation : ${idReservation}
+				</div>
+				<%
+					} else if (null != messageEchec) {
+				%>
+				<%
+					session.removeAttribute(ChampSession.ATT_ERREUR);
+				%>
+				<div
+					style="background-color: red; padding-top: 5px; padding-bottom: 5px;">
+					<%=messageEchec%>
+				</div>
+				<%
+					}
+				%>
+				</div>
+				<br> <input type="hidden" name=<%=ChampSession.ATT_ID_VISITE%>
+					id=<%=ChampSession.ATT_ID_VISITE%> value="0">
+				<%
+					List<Reservation> listeReservation = (List<Reservation>) session.getAttribute(ChampSession.ATT_LISTE_RESERVATIONS);
 					List<Visite> listVisite = (List<Visite>) session.getAttribute(ChampSession.ATT_LISTE_VISITES);
 					int nbVisite = listVisite.size();
 				%>
 				<%
 					for (int i = 0; i < nbVisite; i++) {
+						Visite visite = listVisite.get(i);
+						if (!ServletTools.estDejaReserve(listeReservation, visite)) {
 				%>
 				<div class="row">
 					<%
-						Visite visite = listVisite.get(i);
-							String affichage = visite.getTypeDeVisite() + " - " + visite.getVille() + " - "
-									+ Convertisseur.asStringForView(visite.getDateVisite()) + " - " + visite.getPrix() + "€";
+						String affichage = visite.getTypeDeVisite() + " - " + visite.getVille() + " - "
+										+ Convertisseur.asStringForView(visite.getDateVisite()) + " - " + visite.getPrix() + "€";
 					%>
 					<div class="col-7">
 						<%=visite.getTypeDeVisite()%>
@@ -49,7 +80,8 @@
 						<%
 							if (Convertisseur.asUtilDate(visite.getDateVisite()).after(new Date())) {
 						%>
-						<button type="submit" onclick="changeIdVisite(<%=visite.getCodeVisite()%>)">
+						<button type="submit"
+							onclick="changeIdVisite(<%=visite.getCodeVisite()%>)">
 							Réserver</button>
 						<%
 							} else {
@@ -64,9 +96,12 @@
 				<%
 					}
 				%>
+				<%
+					}
+				%>
 			</form>
-			<!-- 						<a href="Paiement.jsp"><input type="submit" value="envoyer"/></a> -->
-			<form method="post" id="formulaireNouvelleRecherche" action="Servlet">
+			<form method="post" id="formulaireNouvelleRecherche"
+				action="ServletReservation">
 				<input type="hidden" id=<%=ChampSession.ATT_NOUVELLE_RECHERCHE%>
 					name=<%=ChampSession.ATT_NOUVELLE_RECHERCHE%>
 					value=<%=ChampSession.ATT_NOUVELLE_RECHERCHE%> />
@@ -80,9 +115,9 @@
 	</div>
 	<script charset="UTF-8">
 		function changeIdVisite(idVisite) {
-			document.getElementById('idVisite').value = idVisite;
-			console.log(document.getElementById('idVisite'));
-			document.getElementById('choixVisite').action = "ChampSession";
+			document.getElementById("<%=ChampSession.ATT_ID_VISITE%>").value = idVisite;
+			document.getElementById('choixVisite').action = "ServletReservation";
+			document.getElementById('choixVisite').submit();
 		}
 	</script>
 </body>

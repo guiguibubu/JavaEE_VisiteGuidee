@@ -15,6 +15,7 @@ import fr.eseo.javaee.projet.tool.ServletTools;
 import fr.eseo.javaee.projet.visiteguidee.Reservation;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteSEI;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteService;
+import fr.eseo.javaee.projet.visiteguidee.Visite;
 
 /**
  * Servlet implementation class Servlet
@@ -22,16 +23,6 @@ import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteService;
 @WebServlet(description = "Servlet avoir les réservations du client", urlPatterns = { "/ServletMesReservations" })
 public class ServletMesReservations extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	//	private static final String VUE_RECHERCHE = "Recherche.jsp";
-	//	private static final String VUE_PAIEMENT = "Paiement.jsp";
-	//
-	//	public static final String ATT_ID_CLIENT = "idClient";
-	//	public static final String ATT_ID_VISITE = ServletAuthentification.ATT_ID_CLIENT;
-	//	public static final String ATT_ID_RESERVATION = "idReservation";
-	//	public static final String ATT_NEW_SEARCH = "newSearch";
-	//
-	//	public static final String ATT_ERREUR = "erreur";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -65,6 +56,10 @@ public class ServletMesReservations extends HttpServlet {
 		ReservationVisiteSEI port = service.getReservationVisitePort();
 
 		List<Reservation> listeReservation = port.trouverReservationByIdClient(idClient);
+		for (Reservation reservation : listeReservation) {
+			Visite visite = port.trouverVisite(reservation.getVisite()).get(0);
+			reservation.setVisite(visite);
+		}
 		session.setAttribute(ChampSession.ATT_LISTE_RESERVATIONS, listeReservation);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(ChampSession.VUE_MES_RESERVATION);

@@ -25,16 +25,6 @@ import fr.eseo.javaee.projet.visiteguidee.Visite;
 public class ServletReservation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	//	private static final String VUE_RECHERCHE = "Recherche.jsp";
-	//	private static final String VUE_PAIEMENT = "Paiement.jsp";
-	//
-	//	public static final String ATT_ID_CLIENT = ServletAuthentification.ATT_ID_CLIENT;
-	//	public static final String ATT_ID_VISITE = "idVisite";
-	//	public static final String ATT_ID_RESERVATION = "idReservation";
-	//	public static final String ATT_NEW_SEARCH = "newSearch";
-	//
-	//	public static final String ATT_ERREUR = "erreur";
-
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -44,15 +34,17 @@ public class ServletReservation extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 		ServletTools.verifConnexionClient(request, response);
 
-		System.out.println("newSearch => "+request.getAttribute(ChampSession.ATT_NOUVELLE_RECHERCHE));
-		if(ChampSession.ATT_NOUVELLE_RECHERCHE.equals(request.getAttribute(ChampSession.ATT_NOUVELLE_RECHERCHE))) {
+		// nouvelle recherche demandée
+		if (ChampSession.ATT_NOUVELLE_RECHERCHE.equals(request.getParameter(ChampSession.ATT_NOUVELLE_RECHERCHE))) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(ChampSession.VUE_RECHERCHE);
 			dispatcher.forward(request, response);
 		}
@@ -70,10 +62,9 @@ public class ServletReservation extends HttpServlet {
 
 		Visite visite = new Visite();
 		visite.setCodeVisite(Convertisseur.asInt(request.getParameter(ChampSession.ATT_ID_VISITE).toString()));
-		// TODO récupérer élément de la visite da,s la liste de visites de la session
 
 		Reservation reservation = new Reservation();
-		reservation.setVisite(visite); //  visite "vide" dont l'id correspond à celui de la visite choisie
+		reservation.setVisite(visite); // visite "vide" dont l'id correspond à celui de la visite choisie
 		reservation.setClient(client); // doit être celui chargé dans la session
 
 		/**
@@ -85,10 +76,15 @@ public class ServletReservation extends HttpServlet {
 		int code = port.reserverVisite(reservation);
 		reservation.setCodeReservation(code);
 		session.setAttribute(ChampSession.ATT_ID_RESERVATION, code);
-		if(code == -1) {
-			session.setAttribute(ChampSession.ATT_ERREUR, "La base de données côté serveur n'est pas disponible");
+		if (code <= 0) {
+			session.setAttribute(ChampSession.ATT_ERREUR, "Réservation impossible");
+		} else {
+			session.setAttribute(ChampSession.ATT_SUCCES, "Réservation réussie");
 		}
-		RequestDispatcher dispatcher = request.getRequestDispatcher(ChampSession.VUE_PAIEMENT);
+		// On charge en session les reservations du client
+		ServletTools.chargementReservation(request);
+
+		RequestDispatcher dispatcher = request.getRequestDispatcher(ChampSession.VUE_RESULTAT_RECHERCHE);
 		dispatcher.forward(request, response);
 	}
 }
