@@ -14,8 +14,8 @@
 						<form method="post" action="ServletRecherche">
 								<input type="text" name="typeDeVisite" placeholder="Type de visite"/> <br>
 								<input type="text" name="ville" placeholder="Ville"/> <br>
-								<input type="date" name="dateVisiteMin" placeholder="Date minimum"/><br>
-								<input type="text" name="prix" placeholder="Prix"/> <br><br>
+								<input type="date" name="dateVisite" placeholder="Date minimum"/><br>
+								<input type="number" name="prix" min="0" pattern="[0-9]*[.]?[0-9]{1,2}" placeholder="Prix"/> <br><br>
 									
 								<form action="Recherche.jsp">
 									<button type="submit" value="Envoyer">Recherche</button>

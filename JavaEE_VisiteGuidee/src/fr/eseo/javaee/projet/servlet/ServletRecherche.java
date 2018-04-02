@@ -57,9 +57,14 @@ public class ServletRecherche extends HttpServlet {
 		visite.setTypeDeVisite(typeVisite);
 		visite.setVille(ville);
 		try {
-			visite.setDateVisite(Convertisseur.asXMLGregorianCalendar(dateTimeFormatter.parse(dateTime)));
-			visite.setPrix(Integer.parseInt(prix));
+			visite.setDateVisite(Convertisseur.asXMLGregorianCalendar(dateFormatter.parse(dateTime)));
 		} catch (ParseException e1) {
+			e1.printStackTrace();
+		}
+		try {
+			visite.setPrix(Integer.parseInt(prix));
+		} catch (NumberFormatException e1) {
+			visite.setPrix(-1);
 			e1.printStackTrace();
 		}
 
@@ -69,13 +74,8 @@ public class ServletRecherche extends HttpServlet {
 		ReservationVisiteService service = new ReservationVisiteService();
 		ReservationVisiteSEI port = service.getReservationVisitePort();
 
-		List<Visite> visites = new ArrayList<Visite>();
-		try {
-			visites = port.trouverVisite(visite);
-		} catch (Exception e) {
-			// TODO G�rer l'exception pour la transmettre � l'IHM
-			e.printStackTrace();
-		}
+		List<Visite> visites = new ArrayList<>();
+		visites = port.trouverVisite(visite);
 		int nbr = visites.size();
 
 		/**
@@ -85,7 +85,6 @@ public class ServletRecherche extends HttpServlet {
 		session.setAttribute("visites", visites);
 		session.setAttribute("taille", nbr);
 
-		session.setAttribute("type", request.getParameter("typeDeVisite"));
 		RequestDispatcher dispatcher = request.getRequestDispatcher("GestionVisites.jsp");
 		dispatcher.forward(request, response);
 	}

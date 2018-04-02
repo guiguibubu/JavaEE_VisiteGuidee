@@ -30,6 +30,8 @@ public class ObjectFactory {
     private final static QName _PayerVisiteResponse_QNAME = new QName("http://visiteguidee.projet.javaee.eseo.fr/", "payerVisiteResponse");
     private final static QName _ReserverVisite_QNAME = new QName("http://visiteguidee.projet.javaee.eseo.fr/", "reserverVisite");
     private final static QName _ReserverVisiteResponse_QNAME = new QName("http://visiteguidee.projet.javaee.eseo.fr/", "reserverVisiteResponse");
+    private final static QName _TrouverClient_QNAME = new QName("http://visiteguidee.projet.javaee.eseo.fr/", "trouverClient");
+    private final static QName _TrouverClientResponse_QNAME = new QName("http://visiteguidee.projet.javaee.eseo.fr/", "trouverClientResponse");
     private final static QName _TrouverVisite_QNAME = new QName("http://visiteguidee.projet.javaee.eseo.fr/", "trouverVisite");
     private final static QName _TrouverVisiteResponse_QNAME = new QName("http://visiteguidee.projet.javaee.eseo.fr/", "trouverVisiteResponse");
 
@@ -86,6 +88,22 @@ public class ObjectFactory {
      */
     public ReserverVisiteResponse createReserverVisiteResponse() {
         return new ReserverVisiteResponse();
+    }
+
+    /**
+     * Create an instance of {@link TrouverClient }
+     * 
+     */
+    public TrouverClient createTrouverClient() {
+        return new TrouverClient();
+    }
+
+    /**
+     * Create an instance of {@link TrouverClientResponse }
+     * 
+     */
+    public TrouverClientResponse createTrouverClientResponse() {
+        return new TrouverClientResponse();
     }
 
     /**
@@ -180,6 +198,24 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://visiteguidee.projet.javaee.eseo.fr/", name = "reserverVisiteResponse")
     public JAXBElement<ReserverVisiteResponse> createReserverVisiteResponse(ReserverVisiteResponse value) {
         return new JAXBElement<ReserverVisiteResponse>(_ReserverVisiteResponse_QNAME, ReserverVisiteResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link TrouverClient }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://visiteguidee.projet.javaee.eseo.fr/", name = "trouverClient")
+    public JAXBElement<TrouverClient> createTrouverClient(TrouverClient value) {
+        return new JAXBElement<TrouverClient>(_TrouverClient_QNAME, TrouverClient.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link TrouverClientResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://visiteguidee.projet.javaee.eseo.fr/", name = "trouverClientResponse")
+    public JAXBElement<TrouverClientResponse> createTrouverClientResponse(TrouverClientResponse value) {
+        return new JAXBElement<TrouverClientResponse>(_TrouverClientResponse_QNAME, TrouverClientResponse.class, null, value);
     }
 
     /**
