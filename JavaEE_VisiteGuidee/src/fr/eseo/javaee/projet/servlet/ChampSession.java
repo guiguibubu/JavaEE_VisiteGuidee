@@ -1,6 +1,9 @@
 package fr.eseo.javaee.projet.servlet;
 
 public class ChampSession {
+
+	private ChampSession(){};
+
 	//IHM
 	public static final String VUE_CONNEXION = "index.jsp";
 	public static final String VUE_RECHERCHE = "recherche.jsp";
@@ -30,4 +33,6 @@ public class ChampSession {
 	//Reservation
 	public static final String ATT_ID_RESERVATION = "idReservation";
 	public static final String ATT_LISTE_RESERVATIONS = "listeReservations";
+	//Parking
+	public static final String ATT_LISTE_PARKING = "listeParking";
 }

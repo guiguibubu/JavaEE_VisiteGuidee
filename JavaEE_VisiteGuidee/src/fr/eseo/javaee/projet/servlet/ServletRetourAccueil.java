@@ -21,7 +21,6 @@ public class ServletRetourAccueil extends HttpServlet {
 	 */
 	public ServletRetourAccueil() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
