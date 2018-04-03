@@ -33,4 +33,6 @@ public class ChampSession {
 	//Reservation
 	public static final String ATT_ID_RESERVATION = "idReservation";
 	public static final String ATT_LISTE_RESERVATIONS = "listeReservations";
+	//Parking
+	public static final String ATT_LISTE_PARKING = "listeParking";
 }

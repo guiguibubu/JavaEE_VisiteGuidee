@@ -1,6 +1,7 @@
 package fr.eseo.javaee.projet.tool;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eseo.gestionparking.Parking;
 import fr.eseo.javaee.projet.servlet.ChampSession;
 import fr.eseo.javaee.projet.visiteguidee.Reservation;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteSEI;
@@ -65,5 +67,17 @@ public class ServletTools {
 		}
 
 		session.setAttribute(ChampSession.ATT_LISTE_RESERVATIONS, listeReservation);
+	}
+
+	public static List<Parking> trouverParkingDeLaVille(List<Parking> listeParking, String ville) {
+		List<Parking> listeParkingVille = new ArrayList<Parking>();
+		if (ville != null && !"".equals(ville)) {
+			for(Parking parking : listeParking) {
+				if(ville.toUpperCase().equals(parking.getVille().toUpperCase())) {
+					listeParkingVille.add(parking);
+				}
+			}
+		}
+		return listeParkingVille;
 	}
 }
