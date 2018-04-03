@@ -1,9 +1,6 @@
 package fr.eseo.javaee.projet.servlet;
 
 import java.io.IOException;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import fr.eseo.javaee.projet.tool.Convertisseur;
+import fr.eseo.javaee.projet.tool.ServletTools;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteSEI;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteService;
 import fr.eseo.javaee.projet.visiteguidee.Visite;
@@ -27,10 +25,13 @@ import fr.eseo.javaee.projet.visiteguidee.Visite;
 public class ServletRecherche extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private static final String DATE_FORMATTER_STRING = "yyyy-MM-dd";
-	private static final String DATE_TIME_FORMATTER_STRING = "yyyy-MM-dd HH:mm:ss";
-	private static final DateFormat dateFormatter = new SimpleDateFormat(DATE_FORMATTER_STRING);
-	private static final DateFormat dateTimeFormatter = new SimpleDateFormat(DATE_TIME_FORMATTER_STRING);
+	//	private static final String VUE_RESULTAT_RECHERCHE = "GestionVisites.jsp";
+	//
+	//	public static final String ATT_TYPE = "typeVisite";
+	//	public static final String ATT_VILLE = "ville";
+	//	public static final String ATT_DATE_VISITE = "dateVisite";
+	//	public static final String ATT_PRIX = "prix";
+	//	public static final String ATT_VISITES = "visites";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -46,27 +47,19 @@ public class ServletRecherche extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		ServletTools.verifConnexionClient(request, response);
 		/**
 		 * initialisation des objets
 		 */
 		Visite visite = new Visite();
-		String typeVisite = request.getParameter("typeDeVisite");
-		String ville = request.getParameter("ville");
-		String dateTime = request.getParameter("dateVisite");
-		String prix = request.getParameter("prix");
+		String typeVisite = request.getParameter(ChampSession.ATT_TYPE_VISITE);
+		String ville = request.getParameter(ChampSession.ATT_VILLE);
+		String dateTime = request.getParameter(ChampSession.ATT_DATE_VISITE);
+		String prix = request.getParameter(ChampSession.ATT_PRIX);
 		visite.setTypeDeVisite(typeVisite);
 		visite.setVille(ville);
-		try {
-			visite.setDateVisite(Convertisseur.asXMLGregorianCalendar(dateFormatter.parse(dateTime)));
-		} catch (ParseException e1) {
-			e1.printStackTrace();
-		}
-		try {
-			visite.setPrix(Integer.parseInt(prix));
-		} catch (NumberFormatException e1) {
-			visite.setPrix(-1);
-			e1.printStackTrace();
-		}
+		visite.setDateVisite(Convertisseur.asXMLGregorianCalendar(dateTime));
+		visite.setPrix(Convertisseur.asInt(prix));
 
 		/**
 		 * initialisation des services
@@ -76,16 +69,14 @@ public class ServletRecherche extends HttpServlet {
 
 		List<Visite> visites = new ArrayList<>();
 		visites = port.trouverVisite(visite);
-		int nbr = visites.size();
 
 		/**
-		 * creation de la session
+		 * récupération de la session
 		 */
 		HttpSession session = request.getSession();
-		session.setAttribute("visites", visites);
-		session.setAttribute("taille", nbr);
+		session.setAttribute(ChampSession.ATT_LISTE_VISITES, visites);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("GestionVisites.jsp");
+		RequestDispatcher dispatcher = request.getRequestDispatcher(ChampSession.VUE_RESULTAT_RECHERCHE);
 		dispatcher.forward(request, response);
 	}
 }

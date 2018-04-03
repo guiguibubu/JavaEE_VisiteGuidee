@@ -10,52 +10,56 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eseo.javaee.projet.tool.Convertisseur;
+import fr.eseo.javaee.projet.tool.ServletTools;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteSEI;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteService;
 
 /**
  * Servlet implementation class ServletAnnulation
  */
-@WebServlet("/ServletAnnulation")
-public class ServletAnnulation extends HttpServlet {
+@WebServlet("/ServletPaiement")
+public class ServletPaiement extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletAnnulation() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ServletPaiement() {
+		super();
+	}
 
 	/**
 	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 
+		ServletTools.verifConnexionClient(request, response);
 		/**
 		 * initialisation des services
 		 */
 		ReservationVisiteService service = new ReservationVisiteService();
 		ReservationVisiteSEI port = service.getReservationVisitePort();
 
-		boolean annulation = false;
-		
-		try {
-			annulation = port.annulerVisite(Integer.parseInt(request.getParameter("code")));
-		} catch (Exception e) {
-			// TODO G�rer l'exception pour la transmettre � l'IHM
-			e.printStackTrace();
-		}
+		boolean paiement = false;
+
+		paiement = port.payerVisite(Convertisseur.asInt(request.getParameter(ChampSession.ATT_ID_RESERVATION)));
 
 		/**
-		 * creation de la session
+		 * récupération de la session
 		 */
 		HttpSession session = request.getSession();
-		session.setAttribute("annulation", annulation);
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("Annulation.jsp");
+		if(paiement) {
+			session.setAttribute(ChampSession.ATT_SUCCES, "Paiement réussie");
+			// On charge en session les reservations du client
+			ServletTools.chargementReservation(request);
+		} else {
+			session.setAttribute(ChampSession.ATT_ERREUR, "Paiement impossible");
+		}
+		
+		session.setAttribute("paiement",paiement);
+		RequestDispatcher dispatcher = request.getRequestDispatcher("ServletMesReservations");
 		dispatcher.forward(request, response);
 	}
 
