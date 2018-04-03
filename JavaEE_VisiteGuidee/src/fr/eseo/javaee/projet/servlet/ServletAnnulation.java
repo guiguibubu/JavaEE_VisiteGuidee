@@ -44,6 +44,9 @@ public class ServletAnnulation extends HttpServlet {
 
 		boolean annulation = false;
 
+		/*
+		 * annulation de la réservation
+		 */
 		annulation = port.annulerVisite(Convertisseur.asInt(request.getParameter(ChampSession.ATT_ID_RESERVATION)));
 
 		/**
