@@ -30,7 +30,6 @@ public class ServletReservation extends HttpServlet {
 	 */
 	public ServletReservation() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -61,7 +60,7 @@ public class ServletReservation extends HttpServlet {
 		client.setPrenom(session.getAttribute(ChampSession.ATT_PRENOM).toString());
 
 		Visite visite = new Visite();
-		visite.setCodeVisite(Convertisseur.asInt(request.getParameter(ChampSession.ATT_ID_VISITE).toString()));
+		visite.setCodeVisite(Convertisseur.asInt(request.getParameter(ChampSession.ATT_ID_VISITE)));
 
 		Reservation reservation = new Reservation();
 		reservation.setVisite(visite); // visite "vide" dont l'id correspond à celui de la visite choisie

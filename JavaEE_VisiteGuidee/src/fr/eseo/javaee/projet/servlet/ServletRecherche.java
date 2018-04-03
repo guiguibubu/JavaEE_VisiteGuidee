@@ -1,7 +1,6 @@
 package fr.eseo.javaee.projet.servlet;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -12,6 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eseo.gestionparking.GestionParkingSEI;
+import fr.eseo.gestionparking.GestionParkingService;
+import fr.eseo.gestionparking.Parking;
 import fr.eseo.javaee.projet.tool.Convertisseur;
 import fr.eseo.javaee.projet.tool.ServletTools;
 import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteSEI;
@@ -25,20 +27,11 @@ import fr.eseo.javaee.projet.visiteguidee.Visite;
 public class ServletRecherche extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	//	private static final String VUE_RESULTAT_RECHERCHE = "GestionVisites.jsp";
-	//
-	//	public static final String ATT_TYPE = "typeVisite";
-	//	public static final String ATT_VILLE = "ville";
-	//	public static final String ATT_DATE_VISITE = "dateVisite";
-	//	public static final String ATT_PRIX = "prix";
-	//	public static final String ATT_VISITES = "visites";
-
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public ServletRecherche() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -67,14 +60,29 @@ public class ServletRecherche extends HttpServlet {
 		ReservationVisiteService service = new ReservationVisiteService();
 		ReservationVisiteSEI port = service.getReservationVisitePort();
 
-		List<Visite> visites = new ArrayList<>();
-		visites = port.trouverVisite(visite);
+		List<Visite> visites = port.trouverVisite(visite);
+
+		/*
+		 * On récupère les parking dans la  ville
+		 */
+		List<Parking> parkings = null;
+		Parking parking = new Parking();
+		parking.setVille(ville);
+
+		GestionParkingService serviceParking = new GestionParkingService();
+		GestionParkingSEI portParking = serviceParking.getGestionParkingPort();
+
+		parkings = portParking.trouverParking(parking);
 
 		/**
 		 * récupération de la session
 		 */
 		HttpSession session = request.getSession();
 		session.setAttribute(ChampSession.ATT_LISTE_VISITES, visites);
+
+		if(parkings != null) {
+			session.setAttribute(ChampSession.ATT_LISTE_PARKING, parkings);
+		}
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(ChampSession.VUE_RESULTAT_RECHERCHE);
 		dispatcher.forward(request, response);

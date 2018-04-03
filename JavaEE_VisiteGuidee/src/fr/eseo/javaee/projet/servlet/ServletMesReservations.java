@@ -29,7 +29,6 @@ public class ServletMesReservations extends HttpServlet {
 	 */
 	public ServletMesReservations() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**

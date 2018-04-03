@@ -66,7 +66,7 @@
 							String affichage = visite.getTypeDeVisite() + " - " + visite.getVille() + " - "
 									+ Convertisseur.asStringForView(visite.getDateVisite()) + " - " + visite.getPrix() + "€";
 					%>
-					<div class="col-7">
+					<div class="col-lg-6">
 						<%=visite.getTypeDeVisite()%>
 						-
 						<%=visite.getVille()%>
@@ -76,7 +76,7 @@
 						<%=visite.getPrix()%>
 						€
 					</div>
-					<div class="col-5">
+					<div class="col-lg-3">
 						<%
 							if (Convertisseur.asUtilDate(visite.getDateVisite()).after(new Date())) {
 						%>
@@ -87,6 +87,21 @@
 							} else {
 						%>
 						VISITE PASSEE
+						<%
+							}
+						%>
+					</div>
+					<div class="col-lg-3">
+						<%
+							if (!reservation.isPaiementEffectue()) {
+						%>
+						<button type="submit"
+							onclick="payerReservation(<%=reservation.getCodeReservation()%>)">
+							Payer</button>
+						<%
+							} else {
+						%>
+						VISITE PAYEE
 						<%
 							}
 						%>
@@ -115,6 +130,10 @@
 		function changeIdReservation(idReservation) {
 			document.getElementById("<%=ChampSession.ATT_ID_RESERVATION%>").value = idReservation;
 			document.getElementById('choixReservation').action = "ServletAnnulation";
+		}
+		function payerReservation(idReservation) {
+			document.getElementById("<%=ChampSession.ATT_ID_RESERVATION%>").value = idReservation;
+			document.getElementById('choixReservation').action = "ServletPaiement";
 		}
 	</script>
 </html>
