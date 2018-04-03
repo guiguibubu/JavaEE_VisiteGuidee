@@ -18,100 +18,111 @@
 	<jsp:include page="utilisateur.jsp" />
 	<div class="form">
 		<div class="container">
-			<form method="post" id="choixReservation" action="">
-				<h2>Mes réservations</h2>
-				<!-- Message -->
+			<h2>Mes réservations</h2>
+			<!-- Message -->
+			<%
+				String messageSucces = (String) session.getAttribute(ChampSession.ATT_SUCCES);
+				String messageEchec = (String) session.getAttribute(ChampSession.ATT_ERREUR);
+			%>
+			<%
+				if (null != messageSucces) {
+			%>
+			<%
+				session.removeAttribute(ChampSession.ATT_SUCCES);
+			%>
+			<div
+				style="background-color: green; padding-top: 5px; padding-bottom: 5px;">
+				<%=messageSucces%>
+			</div>
+			<%
+				} else if (null != messageEchec) {
+			%>
+			<%
+				session.removeAttribute(ChampSession.ATT_ERREUR);
+			%>
+			<div
+				style="background-color: red; padding-top: 5px; padding-bottom: 5px;">
+				<%=messageEchec%>
+			</div>
+			<%
+				}
+			%>
+			<br> <input type="hidden"
+				name=<%=ChampSession.ATT_ID_RESERVATION%>
+				id=<%=ChampSession.ATT_ID_RESERVATION%> value="0">
+			<%
+				List<Reservation> listReservation = (List<Reservation>) session
+						.getAttribute(ChampSession.ATT_LISTE_RESERVATIONS);
+				int nbReservation = listReservation.size();
+			%>
+			<%
+				for (int i = 0; i < nbReservation; i++) {
+			%>
+			<div class="row">
 				<%
-					String messageSucces = (String) session.getAttribute(ChampSession.ATT_SUCCES);
-					String messageEchec = (String) session.getAttribute(ChampSession.ATT_ERREUR);
+					Reservation reservation = listReservation.get(i);
+						Visite visite = reservation.getVisite();
+						String affichage = visite.getTypeDeVisite() + " - " + visite.getVille() + " - "
+								+ Convertisseur.asStringForView(visite.getDateVisite()) + " - " + visite.getPrix() + "€";
 				%>
-				<%
-					if (null != messageSucces) {
-				%>
-				<%
-					session.removeAttribute(ChampSession.ATT_SUCCES);
-				%>
-				<div
-					style="background-color: green; padding-top: 5px; padding-bottom: 5px;">
-					<%=messageSucces%>
+				<div class="col-lg-6">
+					<%=visite.getTypeDeVisite()%>
+					-
+					<%=visite.getVille()%>
+					<br>
+					<%=Convertisseur.asStringForView(visite.getDateVisite())%>
+					<br>
+					<%=visite.getPrix()%>
+					€
 				</div>
-				<%
-					} else if (null != messageEchec) {
-				%>
-				<%
-					session.removeAttribute(ChampSession.ATT_ERREUR);
-				%>
-				<div
-					style="background-color: red; padding-top: 5px; padding-bottom: 5px;">
-					<%=messageEchec%>
-				</div>
-				<%
-					}
-				%>
-				<br> <input type="hidden"
-					name=<%=ChampSession.ATT_ID_RESERVATION%>
-					id=<%=ChampSession.ATT_ID_RESERVATION%> value="0">
-				<%
-					List<Reservation> listReservation = (List<Reservation>) session
-							.getAttribute(ChampSession.ATT_LISTE_RESERVATIONS);
-					int nbReservation = listReservation.size();
-				%>
-				<%
-					for (int i = 0; i < nbReservation; i++) {
-				%>
-				<div class="row">
+				<div class="col-lg-2">
 					<%
-						Reservation reservation = listReservation.get(i);
-							Visite visite = reservation.getVisite();
-							String affichage = visite.getTypeDeVisite() + " - " + visite.getVille() + " - "
-									+ Convertisseur.asStringForView(visite.getDateVisite()) + " - " + visite.getPrix() + "€";
+						if (Convertisseur.asUtilDate(visite.getDateVisite()).after(new Date())) {
 					%>
-					<div class="col-lg-6">
-						<%=visite.getTypeDeVisite()%>
-						-
-						<%=visite.getVille()%>
-						<br>
-						<%=Convertisseur.asStringForView(visite.getDateVisite())%>
-						<br>
-						<%=visite.getPrix()%>
-						€
-					</div>
-					<div class="col-lg-3">
-						<%
-							if (Convertisseur.asUtilDate(visite.getDateVisite()).after(new Date())) {
-						%>
+					<form method="post" id="choixReservationAnnulation" action="">
 						<button type="submit"
 							onclick="changeIdReservation(<%=reservation.getCodeReservation()%>)">
 							Annuler</button>
-						<%
-							} else {
-						%>
-						VISITE PASSEE
-						<%
-							}
-						%>
-					</div>
-					<div class="col-lg-3">
-						<%
-							if (!reservation.isPaiementEffectue()) {
-						%>
+					</form>
+					<%
+						} else {
+					%>
+					VISITE PASSEE
+					<%
+						}
+					%>
+				</div>
+				<div class="col-lg-2">
+					<%
+						if (!reservation.isPaiementEffectue()) {
+					%>
+					<form method="post" id="choixReservationPaiement" action="">
 						<button type="submit"
 							onclick="payerReservation(<%=reservation.getCodeReservation()%>)">
 							Payer</button>
-						<%
-							} else {
-						%>
-						VISITE PAYEE
-						<%
-							}
-						%>
-					</div>
+					</form>
+					<%
+						} else {
+					%>
+					VISITE PAYEE
+					<%
+						}
+					%>
 				</div>
-				<br>
-				<%
-					}
-				%>
-			</form>
+				<div class="col-lg-2">
+					<form method="post" action="ServletRechercheParking">
+						<input type="hidden" name=<%=ChampSession.ATT_VILLE%>
+							value="<%=visite.getVille()%>"> <input type="hidden"
+							name=<%=ChampSession.ATT_ID_VISITE%>
+							value="<%=visite.getCodeVisite()%>">
+						<button type="submit">Parking</button>
+					</form>
+				</div>
+			</div>
+			<br>
+			<%
+				}
+			%>
 			<form method="post" id="formulaireNouvelleRecherche"
 				action="ServletReservation">
 				<input type="hidden" id="<%=ChampSession.ATT_NOUVELLE_RECHERCHE%>"
@@ -129,11 +140,11 @@
 <script charset="UTF-8">
 		function changeIdReservation(idReservation) {
 			document.getElementById("<%=ChampSession.ATT_ID_RESERVATION%>").value = idReservation;
-			document.getElementById('choixReservation').action = "ServletAnnulation";
+			document.getElementById('choixReservationAnnulation').action = "ServletAnnulation";
 		}
 		function payerReservation(idReservation) {
 			document.getElementById("<%=ChampSession.ATT_ID_RESERVATION%>").value = idReservation;
-			document.getElementById('choixReservation').action = "ServletPaiement";
+			document.getElementById('choixReservationPaiement').action = "ServletPaiement";
 		}
 	</script>
 </html>

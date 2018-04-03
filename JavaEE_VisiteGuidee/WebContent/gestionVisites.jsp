@@ -81,26 +81,6 @@
 				<br>
 				<%=visite.getPrix()%>
 				€
-				<%
-					for (int j = 0; j < listeParkingVille.size(); j++) {
-				%>
-				<%
-				if(j == 0) {
-				%>
-				<br> Parking
-				<%
-				}
-				%>
-				<br>
-				<%=listeParkingVille.get(j).getNom()%>
-				-
-				<%=listeParkingVille.get(j).getType()%>
-				<br>
-				<%=listeParkingVille.get(j).getPrixBase()%>
-				€
-				<%
-					}
-				%>
 			</div>
 			<div class="col-5">
 				<%
