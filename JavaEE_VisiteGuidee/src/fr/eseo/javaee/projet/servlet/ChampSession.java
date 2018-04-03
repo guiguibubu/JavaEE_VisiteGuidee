@@ -1,12 +1,16 @@
 package fr.eseo.javaee.projet.servlet;
 
 public class ChampSession {
+
+	private ChampSession(){};
+
 	//IHM
 	public static final String VUE_CONNEXION = "index.jsp";
 	public static final String VUE_RECHERCHE = "recherche.jsp";
 	public static final String VUE_PAIEMENT = "paiement.jsp";
 	public static final String VUE_MES_RESERVATION = "mesReservations.jsp";
 	public static final String VUE_RESULTAT_RECHERCHE = "gestionVisites.jsp";
+	public static final String VUE_RESULTAT_RECHERCHE_PARKING = "gestionParking.jsp";
 	//Action
 	public static final String ATT_ACTION = "action";
 	public static final String ATT_SUCCES_ANNULATION = "succesAnnulation";
@@ -30,4 +34,10 @@ public class ChampSession {
 	//Reservation
 	public static final String ATT_ID_RESERVATION = "idReservation";
 	public static final String ATT_LISTE_RESERVATIONS = "listeReservations";
+	//Parking
+	public static final String ATT_LISTE_PARKING = "listeParking";
+	public static final String ATT_ID_RESERVATION_PARKING = "idReservationParking";
+	public static final String ATT_ID_PARKING = "idParking";
+	public static final String ATT_DATE_DEBUT_PARKING = "dateDebutParking";
+	public static final String ATT_DATE_FIN_PARKING = "dateFinParking";
 }

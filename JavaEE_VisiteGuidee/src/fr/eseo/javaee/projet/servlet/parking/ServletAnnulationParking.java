@@ -1,4 +1,4 @@
-package fr.eseo.javaee.projet.servlet;
+package fr.eseo.javaee.projet.servlet.parking;
 
 import java.io.IOException;
 
@@ -10,22 +10,23 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import fr.eseo.gestionparking.GestionParkingSEI;
+import fr.eseo.gestionparking.GestionParkingService;
+import fr.eseo.javaee.projet.servlet.ChampSession;
 import fr.eseo.javaee.projet.tool.Convertisseur;
 import fr.eseo.javaee.projet.tool.ServletTools;
-import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteSEI;
-import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteService;
 
 /**
  * Servlet implementation class ServletAnnulation
  */
-@WebServlet("/ServletAnnulation")
-public class ServletAnnulation extends HttpServlet {
+@WebServlet("/ServletAnnulationParking")
+public class ServletAnnulationParking extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ServletAnnulation() {
+	public ServletAnnulationParking() {
 		super();
 	}
 
@@ -39,15 +40,15 @@ public class ServletAnnulation extends HttpServlet {
 		/**
 		 * initialisation des services
 		 */
-		ReservationVisiteService service = new ReservationVisiteService();
-		ReservationVisiteSEI port = service.getReservationVisitePort();
+		GestionParkingService service = new GestionParkingService();
+		GestionParkingSEI port = service.getGestionParkingPort();
 
 		boolean annulation = false;
 
 		/*
 		 * annulation de la réservation
 		 */
-		annulation = port.annulerVisite(Convertisseur.asInt(request.getParameter(ChampSession.ATT_ID_RESERVATION)));
+		annulation = port.annulerParking(Convertisseur.asInt(request.getParameter(ChampSession.ATT_ID_RESERVATION_PARKING)));
 
 		/**
 		 * récupération de la session
@@ -55,13 +56,11 @@ public class ServletAnnulation extends HttpServlet {
 		HttpSession session = request.getSession();
 		if(annulation) {
 			session.setAttribute(ChampSession.ATT_SUCCES, "Annulation réussie");
-			// On charge en session les reservations du client
-			ServletTools.chargementReservation(request);
 		} else {
 			session.setAttribute(ChampSession.ATT_ERREUR, "Annulation impossible");
 		}
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher("ServletMesReservations");
+		RequestDispatcher dispatcher = request.getRequestDispatcher(ChampSession.VUE_MES_RESERVATION);
 		dispatcher.forward(request, response);
 	}
 

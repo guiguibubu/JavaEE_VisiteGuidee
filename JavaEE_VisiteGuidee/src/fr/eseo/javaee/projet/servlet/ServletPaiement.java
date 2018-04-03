@@ -18,14 +18,14 @@ import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteService;
 /**
  * Servlet implementation class ServletAnnulation
  */
-@WebServlet("/ServletAnnulation")
-public class ServletAnnulation extends HttpServlet {
+@WebServlet("/ServletPaiement")
+public class ServletPaiement extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ServletAnnulation() {
+	public ServletPaiement() {
 		super();
 	}
 
@@ -42,25 +42,23 @@ public class ServletAnnulation extends HttpServlet {
 		ReservationVisiteService service = new ReservationVisiteService();
 		ReservationVisiteSEI port = service.getReservationVisitePort();
 
-		boolean annulation = false;
+		boolean paiement = false;
 
-		/*
-		 * annulation de la réservation
-		 */
-		annulation = port.annulerVisite(Convertisseur.asInt(request.getParameter(ChampSession.ATT_ID_RESERVATION)));
+		paiement = port.payerVisite(Convertisseur.asInt(request.getParameter(ChampSession.ATT_ID_RESERVATION)));
 
 		/**
 		 * récupération de la session
 		 */
 		HttpSession session = request.getSession();
-		if(annulation) {
-			session.setAttribute(ChampSession.ATT_SUCCES, "Annulation réussie");
+		if(paiement) {
+			session.setAttribute(ChampSession.ATT_SUCCES, "Paiement réussie");
 			// On charge en session les reservations du client
 			ServletTools.chargementReservation(request);
 		} else {
-			session.setAttribute(ChampSession.ATT_ERREUR, "Annulation impossible");
+			session.setAttribute(ChampSession.ATT_ERREUR, "Paiement impossible");
 		}
-
+		
+		session.setAttribute("paiement",paiement);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("ServletMesReservations");
 		dispatcher.forward(request, response);
 	}

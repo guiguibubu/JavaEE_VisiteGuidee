@@ -1,4 +1,4 @@
-package fr.eseo.javaee.projet.servlet;
+package fr.eseo.javaee.projet.servlet.parking;
 
 import java.io.IOException;
 import java.util.List;
@@ -14,23 +14,20 @@ import javax.servlet.http.HttpSession;
 import fr.eseo.gestionparking.GestionParkingSEI;
 import fr.eseo.gestionparking.GestionParkingService;
 import fr.eseo.gestionparking.Parking;
-import fr.eseo.javaee.projet.tool.Convertisseur;
+import fr.eseo.javaee.projet.servlet.ChampSession;
 import fr.eseo.javaee.projet.tool.ServletTools;
-import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteSEI;
-import fr.eseo.javaee.projet.visiteguidee.ReservationVisiteService;
-import fr.eseo.javaee.projet.visiteguidee.Visite;
 
 /**
  * Servlet implementation class ServletRecherche
  */
-@WebServlet("/ServletRecherche")
-public class ServletRecherche extends HttpServlet {
+@WebServlet("/ServletRechercheParking")
+public class ServletRechercheParking extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ServletRecherche() {
+	public ServletRechercheParking() {
 		super();
 	}
 
@@ -44,23 +41,7 @@ public class ServletRecherche extends HttpServlet {
 		/**
 		 * initialisation des objets
 		 */
-		Visite visite = new Visite();
-		String typeVisite = request.getParameter(ChampSession.ATT_TYPE_VISITE);
 		String ville = request.getParameter(ChampSession.ATT_VILLE);
-		String dateTime = request.getParameter(ChampSession.ATT_DATE_VISITE);
-		String prix = request.getParameter(ChampSession.ATT_PRIX);
-		visite.setTypeDeVisite(typeVisite);
-		visite.setVille(ville);
-		visite.setDateVisite(Convertisseur.asXMLGregorianCalendar(dateTime));
-		visite.setPrix(Convertisseur.asInt(prix));
-
-		/**
-		 * initialisation des services
-		 */
-		ReservationVisiteService service = new ReservationVisiteService();
-		ReservationVisiteSEI port = service.getReservationVisitePort();
-
-		List<Visite> visites = port.trouverVisite(visite);
 
 		/*
 		 * On récupère les parking dans la  ville
@@ -78,13 +59,12 @@ public class ServletRecherche extends HttpServlet {
 		 * récupération de la session
 		 */
 		HttpSession session = request.getSession();
-		session.setAttribute(ChampSession.ATT_LISTE_VISITES, visites);
 
 		if(parkings != null) {
 			session.setAttribute(ChampSession.ATT_LISTE_PARKING, parkings);
 		}
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher(ChampSession.VUE_RESULTAT_RECHERCHE);
+		RequestDispatcher dispatcher = request.getRequestDispatcher(ChampSession.VUE_RESULTAT_RECHERCHE_PARKING);
 		dispatcher.forward(request, response);
 	}
 }
