@@ -95,9 +95,9 @@ public class ServletReservationParking extends HttpServlet {
 		reservationParking.setCodeResa(code);
 		session.setAttribute(ChampSession.ATT_ID_RESERVATION_PARKING, code);
 		if (code <= 0) {
-			session.setAttribute(ChampSession.ATT_ERREUR, "Réservation impossible");
+			session.setAttribute(ChampSession.ATT_ERREUR, "Réservation impossible.");
 		} else {
-			session.setAttribute(ChampSession.ATT_SUCCES, "Réservation réussie");
+			session.setAttribute(ChampSession.ATT_SUCCES, "Réservation réussie.");
 		}
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(ChampSession.VUE_MES_RESERVATION);

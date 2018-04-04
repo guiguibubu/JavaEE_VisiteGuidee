@@ -33,6 +33,7 @@
 			<div
 				style="background-color: green; padding-top: 5px; padding-bottom: 5px;">
 				<%=messageSucces%>
+				Votre code de réservation : ${idReservationParking}
 			</div>
 			<%
 				} else if (null != messageEchec) {
